@@ -1775,19 +1775,57 @@
   }
   .pc-block.pros h4 .dot { background: #15803D; }
   .pc-block.cons h4 .dot { background: var(--wf-pink); }
-  .pc-block .pc-grid {
+  .pc-block .pc-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-softer);
+    font-weight: 500;
+    margin-left: auto;
+    letter-spacing: 0.1em;
+  }
+  .pc-block h4 {
+    justify-content: flex-start;
+  }
+  .pc-items {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px 24px;
+    gap: 12px;
   }
-  @media (max-width: 680px) { .pc-block .pc-grid { grid-template-columns: 1fr; } }
-  .pc-block p {
-    font-size: 14px;
-    line-height: 1.55;
-    margin: 0;
+  @media (max-width: 680px) { .pc-items { grid-template-columns: 1fr; } }
+  .pc-item {
+    position: relative;
+    padding: 14px 14px 14px 40px;
+    background: var(--paper-warm);
+    border-radius: 6px;
+  }
+  .pc-item-num {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-softer);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .pc-block.pros .pc-item-num { color: #15803D; }
+  .pc-block.cons .pc-item-num { color: var(--wf-pink-dark); }
+  .pc-item-head {
+    display: block;
+    font-size: 13.5px;
     color: var(--ink);
+    margin-bottom: 5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
   }
-  .pc-block p strong { color: var(--ink); }
+  .pc-item p {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .pc-item p strong { color: var(--ink); }
 
   /* Measurement framework v2 (cleaner) */
   .measurement-v2 {
@@ -1851,6 +1889,86 @@
     line-height: 1.5;
   }
   .mv2-deliverables dd strong { color: var(--ink); }
+
+  /* Metrics framework v3 (4 categories) */
+  .metrics-framework {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .mf-category {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--wf-pink);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+  .mf-category.content { border-left-color: var(--wf-pink); }
+  .mf-category.direct { border-left-color: #F59E0B; }
+  .mf-category.audience { border-left-color: #6366F1; }
+  .mf-category.cycle { border-left-color: #15803D; }
+  .mf-category h5 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink);
+    margin: 0 0 12px;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .mf-category.content h5 { color: var(--ink); }
+  .mf-category .mf-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--paper-warm);
+  }
+  .mf-category.content .mf-num { color: var(--wf-pink); background: var(--wf-pink-softer); }
+  .mf-category.direct .mf-num { color: #C75016; background: #FFF1E8; }
+  .mf-category.audience .mf-num { color: #4F46E5; background: #EEF2FF; }
+  .mf-category.cycle .mf-num { color: #15803D; background: #DCFCE7; }
+  .mf-category .mf-note {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 11.5px;
+    color: var(--ink-softer);
+    font-style: italic;
+    margin-left: auto;
+    letter-spacing: 0;
+  }
+  .mf-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .mf-metric {
+    padding: 11px 13px;
+    background: var(--paper-warm);
+    border-radius: 5px;
+    font-size: 13px;
+  }
+  .mf-metric strong {
+    display: block;
+    color: var(--ink);
+    margin-bottom: 3px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .mf-metric .mf-metric-note {
+    color: var(--ink-softer);
+    font-size: 11.5px;
+    line-height: 1.45;
+    display: block;
+  }
 
   /* Experiment-specific banner */
   .experiment-banner {
@@ -2397,7 +2515,7 @@
 
         <div class="pm-closeness-note">
           <strong>Closest match to WF</strong>
-          Nubank — both dispersed multi-region, both education-driven, both at a breakthrough-to-growth inflection.
+          Nubank — both dispersed multi-region, sitting at a similar mixed content/product register, at a breakthrough-to-growth inflection.
         </div>
 
         <div class="pm-inner">
@@ -2410,7 +2528,7 @@
           <div class="pm-dot" style="left: 55%; top: 56%;"><img src="images/logos/revolut.png" alt="">Revolut</div>
           <div class="pm-dot" style="left: 28%; top: 65%;"><img src="images/logos/ramp.png" alt="">Ramp</div>
           <div class="pm-dot" style="left: 18%; top: 60%;"><img src="images/logos/brex.png" alt="">Brex</div>
-          <div class="pm-dot wf" style="left: 86%; top: 25%;">WorldFirst</div>
+          <div class="pm-dot wf" style="left: 86%; top: 50%;">WorldFirst</div>
         </div>
       </figure>
 
@@ -3536,7 +3654,7 @@
         <!-- Brand positions on the S-curve (left = stage %, top = curve height) -->
         <div class="lc-dot wf" style="left: 28%; top: 65%;">WorldFirst <span class="wf-scope">Global</span></div>
         <div class="lc-dot wf" style="left: 52%; top: 42%;">WorldFirst <span class="wf-scope">China</span></div>
-        <div class="lc-dot" style="left: 20%; top: 75%;"><img src="images/logos/ramp.png" alt="">Ramp</div>
+        <div class="lc-dot" style="left: 46%; top: 51%;"><img src="images/logos/ramp.png" alt="">Ramp</div>
         <div class="lc-dot" style="left: 36%; top: 60%;"><img src="images/logos/nubank.png" alt="">Nubank</div>
         <div class="lc-dot" style="left: 44%; top: 53%;"><img src="images/logos/brex.png" alt="">Brex</div>
         <div class="lc-dot" style="left: 60%; top: 34%;"><img src="images/logos/pleo.png" alt="">Pleo</div>
@@ -3553,7 +3671,7 @@
         </div>
       </figure>
 
-      <p class="fine"><strong>Reading the curve:</strong> brands on the steep rising section are growing fast — the playbook still works. Brands on the flattening top-right are defending, with composition heavily shifted to evergreen SEO and lifestyle retention. <strong>WorldFirst Global sits at the breakthrough zone</strong> — clustered with Ramp and Nubank where category-creation, creator partnerships, and milestone narrative earn their weight. <strong>WorldFirst China</strong> is further along, between breakthrough and growth — the brand is better known in the Chinese-operator segment, benefiting from the Ant/Alipay relationship. Mature-brand playbooks don't apply to either position.</p>
+      <p class="fine"><strong>Reading the curve:</strong> brands on the steep rising section are growing fast — the playbook still works. Brands on the flattening top-right are defending, with composition heavily shifted to evergreen SEO and lifestyle retention. <strong>WorldFirst Global sits at the breakthrough zone</strong> — near Nubank, where category-creation, creator partnerships, and milestone narrative earn their weight. <strong>WorldFirst China</strong> is further along, between breakthrough and growth — the brand is better known in the Chinese-operator segment via the Ant/Alipay relationship. Ramp sits close to WorldFirst China on the curve — its PLG engine + paid PPC are working. Mature-brand playbooks don't apply to any of these positions.</p>
 
       <h3>D4 · Product-driven virality vs. education-driven adoption</h3>
       <div class="two-col">
@@ -4495,58 +4613,155 @@
 
       <div class="proscons-stacked">
         <div class="pc-block pros">
-          <h4><span class="dot"></span>Pros</h4>
-          <div class="pc-grid">
-            <p><strong>Fast demand signal.</strong> Creator activations and short-form show measurable effects in weeks — flagship research compounds over 12-24 months.</p>
-            <p><strong>Near-term executability.</strong> Creator contacts already lined up; short-form production doesn't need in-house studio capacity.</p>
-            <p><strong>Regional leverage.</strong> One creator per priority region beats any amount of generic branded content in a market where the brand is unknown.</p>
-            <p><strong>Budget efficiency.</strong> A single flagship research asset costs <strong class="pink">$80-300k</strong>. The same money funds multi-region creator programs and dozens of short-form tests.</p>
-            <p><strong>Product-led virality has space.</strong> Our product saves customers real money (a 5× delta on FX is visible in a single clip). Letting the product explain itself is cheaper than teaching a category.</p>
-            <p><strong>Testable and reversible.</strong> A defined stress-test window means limited opportunity cost if the strategy under-performs.</p>
+          <h4><span class="dot"></span>Pros <span class="pc-count">6</span></h4>
+          <div class="pc-items">
+            <div class="pc-item">
+              <div class="pc-item-num">01</div>
+              <strong class="pc-item-head">Fast demand signal</strong>
+              <p>Creator activations and short-form show measurable effects in <strong>weeks</strong> — flagship research compounds over 12-24 months.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">02</div>
+              <strong class="pc-item-head">Near-term executability</strong>
+              <p>Creator contacts already lined up; short-form production doesn't need in-house studio capacity.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">03</div>
+              <strong class="pc-item-head">Regional leverage</strong>
+              <p>One creator per priority region beats any amount of generic branded content in a market where the brand is unknown.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">04</div>
+              <strong class="pc-item-head">Budget efficiency</strong>
+              <p>A single flagship research asset costs <strong class="pink">$80-300k</strong>. The same money funds multi-region creator programs and dozens of short-form tests.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">05</div>
+              <strong class="pc-item-head">Product-led virality has space</strong>
+              <p>Our product saves customers real money (a 5× delta on FX is visible in a single clip). Letting the product explain itself is cheaper than teaching a category.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">06</div>
+              <strong class="pc-item-head">Testable and reversible</strong>
+              <p>A defined stress-test window means limited opportunity cost if the strategy under-performs.</p>
+            </div>
           </div>
         </div>
 
         <div class="pc-block cons">
-          <h4><span class="dot"></span>Cons</h4>
-          <div class="pc-grid">
-            <p><strong>Trust-layer erosion risk.</strong> Branded content + follower accounts were building institutional credibility. Pulling them leaves a gap that creator credibility may or may not fill.</p>
-            <p><strong>SEO opportunity cost.</strong> Educational evergreen compounds over 3-7 years. Pulling back now forfeits permanent future traffic.</p>
-            <p><strong>B2B trust hierarchy.</strong> SME buyers weight <em>institutional signals</em> (research, press, Bloomberg) more heavily than creator endorsements. Creators can feel promotional.</p>
-            <p><strong>Creator concentration risk.</strong> If a creator under-performs or goes off-message, we absorb the brand consequence in a region where we just invested.</p>
-            <p><strong>Platform-fit risk.</strong> Revolut's "we haven't cracked TikTok" warning applies — not every platform rewards finance content regardless of audience presence.</p>
-            <p><strong>Recovery cost.</strong> Rebuilding flagship + educational content after a pullback is a 6-12 month re-ramp, not a flip of a switch.</p>
+          <h4><span class="dot"></span>Cons <span class="pc-count">6</span></h4>
+          <div class="pc-items">
+            <div class="pc-item">
+              <div class="pc-item-num">01</div>
+              <strong class="pc-item-head">Trust-layer erosion risk</strong>
+              <p>Branded content + follower accounts were building institutional credibility. Pulling them leaves a gap that creator credibility may or may not fill.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">02</div>
+              <strong class="pc-item-head">SEO opportunity cost</strong>
+              <p>Educational evergreen compounds over 3-7 years. Pulling back now forfeits permanent future traffic.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">03</div>
+              <strong class="pc-item-head">B2B trust hierarchy</strong>
+              <p>SME buyers weight <em>institutional signals</em> (research, press, Bloomberg) more heavily than creator endorsements. Creators can feel promotional.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">04</div>
+              <strong class="pc-item-head">Creator concentration risk</strong>
+              <p>If a creator under-performs or goes off-message, we absorb the brand consequence in a region where we just invested.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">05</div>
+              <strong class="pc-item-head">Platform-fit risk</strong>
+              <p>Revolut's "we haven't cracked TikTok" warning applies — not every platform rewards finance content regardless of audience presence.</p>
+            </div>
+            <div class="pc-item">
+              <div class="pc-item-num">06</div>
+              <strong class="pc-item-head">Recovery cost</strong>
+              <p>Rebuilding flagship + educational content after a pullback is a 6-12 month re-ramp, not a flip of a switch.</p>
+            </div>
           </div>
         </div>
       </div>
 
       <h3>What we're actually measuring</h3>
 
-      <div class="measurement-v2">
-        <div class="mv2-head">Deliverables from the aggressive play</div>
+      <div class="mv2-primary">
+        <div class="mv2-big">10M<span style="font-size: 0.6em;">/mo</span></div>
+        <div class="mv2-big-label"><strong>Impressions per month</strong> in priority regions — the headline volume target. Delivered via regional creators + short-form, amplified through paid where it earns the spend. Beyond volume, we track four distinct signal categories:</div>
+      </div>
 
-        <div class="mv2-primary">
-          <div class="mv2-big">10M<span style="font-size: 0.6em;">/mo</span></div>
-          <div class="mv2-big-label"><strong>Impressions per month</strong> in priority regions — the primary volume metric. Delivered via regional creators + short-form, amplified through paid where it earns the spend.</div>
+      <div class="metrics-framework">
+
+        <div class="mf-category content">
+          <h5><span class="mf-num">01</span>Content performance <span class="mf-note">per piece &middot; near-term</span></h5>
+          <div class="mf-metrics">
+            <div class="mf-metric">
+              <strong>Impressions</strong>
+              <span class="mf-metric-note">Volume — how many times content lands in front of target buyers</span>
+            </div>
+            <div class="mf-metric">
+              <strong>Time spent</strong>
+              <span class="mf-metric-note">Engagement depth — watch time, read time, scroll depth</span>
+            </div>
+            <div class="mf-metric">
+              <strong>Engagement rate</strong>
+              <span class="mf-metric-note">% of impressions that triggered interaction (likes, shares, saves, comments)</span>
+            </div>
+          </div>
         </div>
 
-        <p class="fine" style="margin-bottom: 14px;">Beyond impressions, the shift drives traffic to <strong>website</strong> + potentially to <strong>direct-to-download ads</strong>. Each touchpoint has a deliverable we track:</p>
+        <div class="mf-category direct">
+          <h5><span class="mf-num">02</span>Direct acquisition <span class="mf-note">attributed conversions &middot; near-term</span></h5>
+          <div class="mf-metrics">
+            <div class="mf-metric">
+              <strong>Website visits</strong>
+              <span class="mf-metric-note">Raw traffic from content → WF.com. Separates drive-by from deeper engagement</span>
+            </div>
+            <div class="mf-metric">
+              <strong>App downloads</strong>
+              <span class="mf-metric-note">Direct installs attributed to the content or to direct-to-download ads</span>
+            </div>
+            <div class="mf-metric">
+              <strong>Registrations</strong>
+              <span class="mf-metric-note">Signups completed in-session — the tight-loop conversion signal</span>
+            </div>
+          </div>
+        </div>
 
-        <dl class="mv2-deliverables">
-          <dt>Impressions</dt>
-          <dd>The volume metric — how many times our content lands in front of target buyers across priority regions.</dd>
+        <div class="mf-category audience">
+          <h5><span class="mf-num">03</span>Audience building <span class="mf-note">compounding assets &middot; for retargeting</span></h5>
+          <div class="mf-metrics">
+            <div class="mf-metric">
+              <strong>Social media audiences</strong>
+              <span class="mf-metric-note">Followers / subscribers / saves on-platform — audience we can retarget organically</span>
+            </div>
+            <div class="mf-metric">
+              <strong>Website audiences</strong>
+              <span class="mf-metric-note">Pixel-tracked visitors + email list growth — audience we can retarget via paid + owned</span>
+            </div>
+          </div>
+        </div>
 
-          <dt>Website audience</dt>
-          <dd>People who click through and become part of the WF website audience. A <strong>built audience</strong> is a compounding asset for downstream remarketing, email, and direct conversion.</dd>
+        <div class="mf-category cycle">
+          <h5><span class="mf-num">04</span>Cycle signals <span class="mf-note">3-6 month lookback &middot; strategy-level</span></h5>
+          <div class="mf-metrics">
+            <div class="mf-metric">
+              <strong>Brand search lift</strong>
+              <span class="mf-metric-note">Month-over-month growth in branded queries — proxy for the trust layer working independently of creator posts</span>
+            </div>
+            <div class="mf-metric">
+              <strong>Direct + indirect conversion</strong>
+              <span class="mf-metric-note">End-of-cycle view on attributed conversion volume — is the strategy lifting downstream metrics?</span>
+            </div>
+            <div class="mf-metric">
+              <strong>Cycle verdict</strong>
+              <span class="mf-metric-note">At 3 and 6 months — is the aggressive play earning its weight, or do we rebalance?</span>
+            </div>
+          </div>
+        </div>
 
-          <dt>Website visits</dt>
-          <dd>Raw traffic volume to WF.com. Separates curiosity-level from deeper engagement.</dd>
-
-          <dt>Time spent</dt>
-          <dd>How long people actually engage — watching, reading, scrolling. Engagement depth is a quality signal on top of visit volume.</dd>
-
-          <dt>Instant conversion</dt>
-          <dd>How many impressions convert <em>directly</em>, on the same visit — the tight loop signal. What share of this content is doing the acquisition job right now vs. feeding the longer funnel.</dd>
-        </dl>
       </div>
     </section>
 
