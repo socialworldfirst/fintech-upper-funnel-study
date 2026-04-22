@@ -806,11 +806,20 @@
     border-color: var(--wf-pink);
     color: white;
     font-weight: 700;
-    padding: 5px 14px;
+    padding: 5px 12px;
     font-size: 11px;
     letter-spacing: 0.02em;
     box-shadow: 0 3px 10px rgba(230, 24, 95, 0.35);
     z-index: 5;
+  }
+  .lc-dot.wf .wf-scope {
+    font-weight: 500;
+    opacity: 0.88;
+    margin-left: 2px;
+    padding: 1px 6px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 100px;
+    font-size: 10px;
   }
   .lc-legend {
     position: absolute;
@@ -982,6 +991,16 @@
   }
   .rm-fill.med { background: #F59E0B; }
   .rm-fill.low { background: #C8CFE5; }
+  .rm-fill.na {
+    background: repeating-linear-gradient(45deg, #D1D5DB, #D1D5DB 3px, transparent 3px, transparent 6px);
+    width: 100%;
+    opacity: 0.6;
+  }
+  .rm-val.na {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 9.5px;
+  }
   .rm-val {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
@@ -1642,6 +1661,197 @@
     .comp-compare { grid-template-columns: 1fr; }
   }
 
+  /* Delta bar chart — centre-pivot */
+  .delta-bar-chart {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin: 24px 0;
+  }
+  .dbc-head {
+    display: grid;
+    grid-template-columns: 200px 1fr 70px;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--line-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+  }
+  .dbc-head .dbc-axis {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dbc-head .dbc-axis .zero {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink);
+  }
+  .dbc-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 70px;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    padding: 4px 0;
+  }
+  .dbc-label { color: var(--ink); }
+  .dbc-track {
+    position: relative;
+    height: 22px;
+    background: var(--paper-warm);
+    border-radius: 3px;
+  }
+  .dbc-track::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -2px; bottom: -2px;
+    width: 1.5px;
+    background: var(--ink);
+    z-index: 2;
+  }
+  .dbc-fill {
+    position: absolute;
+    top: 3px;
+    height: calc(100% - 6px);
+    border-radius: 2px;
+  }
+  .dbc-fill.pos {
+    left: 50%;
+    background: #15803D;
+  }
+  .dbc-fill.neg {
+    right: 50%;
+    background: var(--wf-pink);
+  }
+  .dbc-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 12.5px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .dbc-val.pos { color: #15803D; }
+  .dbc-val.pos::before { content: '+'; }
+  .dbc-val.neg { color: var(--wf-pink-dark); }
+  .dbc-val.flat { color: var(--ink-softer); font-weight: 500; }
+
+  /* Stacked pros/cons */
+  .proscons-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 24px 0;
+  }
+  .pc-block {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 24px;
+  }
+  .pc-block.pros { border-left: 3px solid #15803D; }
+  .pc-block.cons { border-left: 3px solid var(--wf-pink); }
+  .pc-block h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink);
+    margin: 0 0 14px;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pc-block h4 .dot {
+    width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+  }
+  .pc-block.pros h4 .dot { background: #15803D; }
+  .pc-block.cons h4 .dot { background: var(--wf-pink); }
+  .pc-block .pc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 24px;
+  }
+  @media (max-width: 680px) { .pc-block .pc-grid { grid-template-columns: 1fr; } }
+  .pc-block p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--ink);
+  }
+  .pc-block p strong { color: var(--ink); }
+
+  /* Measurement framework v2 (cleaner) */
+  .measurement-v2 {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin: 24px 0;
+  }
+  .mv2-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wf-pink);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .mv2-primary {
+    padding: 14px 18px;
+    background: var(--wf-pink-softer);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: center;
+  }
+  .mv2-primary .mv2-big {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--wf-pink);
+    line-height: 1;
+  }
+  .mv2-primary .mv2-big-label {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .mv2-primary .mv2-big-label strong { color: var(--ink); font-weight: 600; }
+  .mv2-deliverables {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 10px 20px;
+    margin-top: 8px;
+  }
+  @media (max-width: 680px) { .mv2-deliverables { grid-template-columns: 1fr; gap: 4px; } }
+  .mv2-deliverables dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wf-pink);
+    font-weight: 600;
+    padding-top: 2px;
+  }
+  .mv2-deliverables dd {
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .mv2-deliverables dd strong { color: var(--ink); }
+
   /* Experiment-specific banner */
   .experiment-banner {
     background: linear-gradient(135deg, #FFF4EC 0%, var(--wf-pink-softer) 100%);
@@ -2012,7 +2222,7 @@
       <a href="#pillars">Pillars</a>
       <a href="#distribution">Distribution</a>
       <a href="#composition">Composition</a>
-      <a href="#experiment">Experiment</a>
+      <a href="#experiment">Aggressive play</a>
       <a href="#lifecycle">Lifecycle</a>
       <a href="#closing">Closing</a>
     </nav>
@@ -2073,7 +2283,7 @@
       <li><a href="#pillars"><span class="num">§ 3</span>Content pillars</a></li>
       <li><a href="#distribution"><span class="num">§ 3b</span>Distribution channels</a></li>
       <li><a href="#composition"><span class="num">§ 4</span>Composition</a></li>
-      <li><a href="#experiment"><span class="num">§ 4b</span>The experiment</a></li>
+      <li><a href="#experiment"><span class="num">§ 4b</span>The aggressive play</a></li>
       <li><a href="#lifecycle"><span class="num">§ 5</span>Lifecycle</a></li>
       <li><a href="#closing"><span class="num">—</span>Closing principles</a></li>
       <li><a href="#sources"><span class="num">—</span>Sources</a></li>
@@ -3324,14 +3534,15 @@
         </svg>
 
         <!-- Brand positions on the S-curve (left = stage %, top = curve height) -->
-        <div class="lc-dot wf" style="left: 12%; top: 78%;">WorldFirst</div>
-        <div class="lc-dot" style="left: 22%; top: 72%;"><img src="images/logos/ramp.png" alt="">Ramp</div>
-        <div class="lc-dot" style="left: 35%; top: 63%;"><img src="images/logos/nubank.png" alt="">Nubank</div>
-        <div class="lc-dot" style="left: 48%; top: 49%;"><img src="images/logos/brex.png" alt="">Brex</div>
-        <div class="lc-dot" style="left: 55%; top: 40%;"><img src="images/logos/pleo.png" alt="">Pleo</div>
-        <div class="lc-dot" style="left: 62%; top: 33%;"><img src="images/logos/revolut.png" alt="">Revolut</div>
-        <div class="lc-dot" style="left: 70%; top: 24%;"><img src="images/logos/monzo.png" alt="">Monzo</div>
-        <div class="lc-dot" style="left: 75%; top: 19%;"><img src="images/logos/chime.png" alt="">Chime</div>
+        <div class="lc-dot wf" style="left: 28%; top: 65%;">WorldFirst <span class="wf-scope">Global</span></div>
+        <div class="lc-dot wf" style="left: 52%; top: 42%;">WorldFirst <span class="wf-scope">China</span></div>
+        <div class="lc-dot" style="left: 20%; top: 75%;"><img src="images/logos/ramp.png" alt="">Ramp</div>
+        <div class="lc-dot" style="left: 36%; top: 60%;"><img src="images/logos/nubank.png" alt="">Nubank</div>
+        <div class="lc-dot" style="left: 44%; top: 53%;"><img src="images/logos/brex.png" alt="">Brex</div>
+        <div class="lc-dot" style="left: 60%; top: 34%;"><img src="images/logos/pleo.png" alt="">Pleo</div>
+        <div class="lc-dot" style="left: 66%; top: 27%;"><img src="images/logos/revolut.png" alt="">Revolut</div>
+        <div class="lc-dot" style="left: 73%; top: 21%;"><img src="images/logos/monzo.png" alt="">Monzo</div>
+        <div class="lc-dot" style="left: 79%; top: 17%;"><img src="images/logos/chime.png" alt="">Chime</div>
         <div class="lc-dot" style="left: 92%; top: 12%;"><img src="images/logos/wise.png" alt="">Wise</div>
 
         <div class="lc-stage-labels">
@@ -3342,7 +3553,7 @@
         </div>
       </figure>
 
-      <p class="fine"><strong>Reading the curve:</strong> brands on the steep rising section are growing fast — the playbook still works. Brands on the flattening top-right are defending, with composition heavily shifted to evergreen SEO and lifestyle retention. <strong>WorldFirst sits in the pre-breakthrough-to-breakthrough zone</strong> — the section where category-creation, creator partnerships, and milestone narrative earn their weight. Mature-brand playbooks don't apply here. Note: Nubank is marked at its <em>new-market</em> breakthrough position; in Brazil it's growth-stage-to-mature.</p>
+      <p class="fine"><strong>Reading the curve:</strong> brands on the steep rising section are growing fast — the playbook still works. Brands on the flattening top-right are defending, with composition heavily shifted to evergreen SEO and lifestyle retention. <strong>WorldFirst Global sits at the breakthrough zone</strong> — clustered with Ramp and Nubank where category-creation, creator partnerships, and milestone narrative earn their weight. <strong>WorldFirst China</strong> is further along, between breakthrough and growth — the brand is better known in the Chinese-operator segment, benefiting from the Ant/Alipay relationship. Mature-brand playbooks don't apply to either position.</p>
 
       <h3>D4 · Product-driven virality vs. education-driven adoption</h3>
       <div class="two-col">
@@ -3687,10 +3898,12 @@
           <div class="rw-item"><span class="rw-key">Vietnam</span><span class="rw-val">6.2%</span></div>
           <div class="rw-item"><span class="rw-key">Longtail <span class="rw-sub">MA · BD · PK · NG</span></span><span class="rw-val">5.7%</span></div>
           <div class="rw-item"><span class="rw-key">ANZ</span><span class="rw-val">5.7%</span></div>
+          <div class="rw-item"><span class="rw-key">LATAM <span class="rw-sub">MX · BR</span></span><span class="rw-val">~4%</span></div>
         </div>
       </div>
 
       <p class="fine">Each platform below shows: <strong>best content types</strong> it carries, our <strong>pillar-mix fit</strong> bar, and the <strong>audience presence per region</strong>. Presence reflects whether WF's priority-region buyers (SMB importers, e-comm sellers, overseas Chinese operators) actually spend time on that platform in that market.</p>
+      <p class="fine"><strong>On the <em>N/A</em> marker:</strong> for YouTube, Instagram, TikTok and Facebook, the <strong>US row reads N/A</strong> — the US market is covered under the separate Zyla brand, which doesn't operate owned channels on those platforms. For Xiaohongshu + WeChat, the region rows read the <strong>Chinese-speaking cohort</strong> within each market — a different audience from the Zyla-served US consumer.</p>
 
       <div class="platform-ecology-v2">
 
@@ -3721,6 +3934,7 @@
                 <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 90%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
                 <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 40%"></div></div><span class="rm-val">Mid</span></div>
                 <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 72%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 30%"></div></div><span class="rm-val">Low</span></div>
@@ -3756,7 +3970,8 @@
               <div class="region-mini">
                 <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
-                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill na"></div></div><span class="rm-val na">N/A</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 75%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
@@ -3792,7 +4007,8 @@
               <div class="region-mini">
                 <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 75%"></div></div><span class="rm-val">High</span></div>
-                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill na"></div></div><span class="rm-val na">N/A</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 72%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
@@ -3827,7 +4043,8 @@
               <div class="region-mini">
                 <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill med" style="width: 65%"></div></div><span class="rm-val">Mid</span></div>
                 <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
-                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill na"></div></div><span class="rm-val na">N/A</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">High</span></div>
@@ -3862,7 +4079,8 @@
               <div class="region-mini">
                 <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
                 <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 58%"></div></div><span class="rm-val">Mid</span></div>
-                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill na"></div></div><span class="rm-val na">N/A</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">Very high</span></div>
                 <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
@@ -3878,8 +4096,8 @@
             <span class="pc-name">X / Twitter</span>
             <div class="pc-fit">
               <span class="pc-fit-label">WF fit</span>
-              <div class="pc-fit-bar"><div class="pc-fit-fill mod" style="width: 50%;"></div></div>
-              <span class="pc-fit-val">50%</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill weak" style="width: 25%;"></div></div>
+              <span class="pc-fit-val">25%</span>
             </div>
           </div>
           <div class="pc-body">
@@ -3888,20 +4106,20 @@
               <div class="pillar-chips">
                 <span class="pillar-chip tight">Milestone (reactive)</span>
                 <span class="pillar-chip tight">PR-coded (news)</span>
-                <span class="pillar-chip tight">Executive / founder</span>
               </div>
-              <p class="pc-note">Declining reach globally. Kept warm for news-register milestones and press-adjacent moments. Nigeria and Pakistan are outliers where X still carries business conversation.</p>
+              <p class="pc-note"><strong>Low fit overall.</strong> Our audience isn't there in meaningful numbers — overall audience is too small to justify investment. Kept warm for news-register milestones only. Nigeria + Pakistan carry some business conversation but are a minor side-use, not a primary surface.</p>
             </div>
             <div>
               <span class="pc-col-label">Our audience presence by region</span>
               <div class="region-mini">
-                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill med" style="width: 62%"></div></div><span class="rm-val">Mid</span></div>
-                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 35%"></div></div><span class="rm-val">Low</span></div>
-                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 75%"></div></div><span class="rm-val">High</span></div>
-                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 65%"></div></div><span class="rm-val">Mid-High</span></div>
-                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 50%"></div></div><span class="rm-val">Mid</span></div>
-                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 25%"></div></div><span class="rm-val">Low</span></div>
-                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill low" style="width: 40%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 25%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill na"></div></div><span class="rm-val na">N/A</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 32%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 32%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 18%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill low" style="width: 38%"></div></div><span class="rm-val">Low</span></div>
               </div>
             </div>
           </div>
@@ -3911,7 +4129,7 @@
         <div class="platform-card china-desk">
           <div class="pc-head">
             <span class="pc-name">Xiaohongshu 小红书</span>
-            <span class="china-desk-badge">China desk · not our work</span>
+            <span class="china-desk-badge">China desk · coordinate, not own</span>
             <div class="pc-fit">
               <span class="pc-fit-label">WF fit</span>
               <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 80%;"></div></div>
@@ -3922,23 +4140,24 @@
             <div>
               <span class="pc-col-label">Best content types</span>
               <div class="pillar-chips">
-                <span class="pillar-chip">Regional creators (CN)</span>
+                <span class="pillar-chip">Regional creators (CN-speaking)</span>
                 <span class="pillar-chip">Educational evergreen</span>
                 <span class="pillar-chip">Short-form</span>
-                <span class="pillar-chip tight">Business-adjacent lifestyle</span>
+                <span class="pillar-chip tight">Business-adjacent storytelling</span>
               </div>
-              <p class="pc-note">High-fit platform for overseas-Chinese importer audience. Content register aligns with sourcing + business-adjacent storytelling. <strong>Managed by China desk — we coordinate rather than own.</strong></p>
+              <p class="pc-note"><strong>Strong for awareness</strong> among overseas-Chinese importer audiences — the register matches sourcing + cross-border storytelling. Audience is limited in absolute size per region, but high-trust via our <strong>Alipay/Ant relationship</strong> (the Trump card). <em>Audience row below reads the Chinese-speaking cohort within each region — separate from the Zyla US brand.</em></p>
             </div>
             <div>
-              <span class="pc-col-label">Our audience presence by region</span>
+              <span class="pc-col-label">Chinese-speaking audience by region</span>
               <div class="region-mini">
-                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill low" style="width: 22%"></div></div><span class="rm-val">Low</span></div>
-                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 15%"></div></div><span class="rm-val">Low</span></div>
-                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 42%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 75%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">overseas CN</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 18%"></div></div><span class="rm-val">Low</span></div>
                 <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 10%"></div></div><span class="rm-val">Negligible</span></div>
-                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
-                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 18%"></div></div><span class="rm-val">Low</span></div>
-                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill low" style="width: 30%"></div></div><span class="rm-val">Low-Mid</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 90%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 22%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
               </div>
             </div>
           </div>
@@ -3948,34 +4167,35 @@
         <div class="platform-card china-desk">
           <div class="pc-head">
             <span class="pc-name">WeChat 微信</span>
-            <span class="china-desk-badge">China desk · not our work</span>
+            <span class="china-desk-badge">China desk · coordinate, not own</span>
             <div class="pc-fit">
               <span class="pc-fit-label">WF fit</span>
-              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 75%;"></div></div>
-              <span class="pc-fit-val">75%</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 88%;"></div></div>
+              <span class="pc-fit-val">88%</span>
             </div>
           </div>
           <div class="pc-body">
             <div>
               <span class="pc-col-label">Best content types</span>
               <div class="pillar-chips">
-                <span class="pillar-chip">Service content / Official Account</span>
-                <span class="pillar-chip">Milestone &amp; trust signals</span>
+                <span class="pillar-chip">Official Account &middot; service</span>
+                <span class="pillar-chip">Trust &amp; conversion content</span>
+                <span class="pillar-chip">Milestone broadcast</span>
                 <span class="pillar-chip tight">Group-driven community</span>
-                <span class="pillar-chip tight">1:1 service broadcast</span>
               </div>
-              <p class="pc-note">Must-have pairing with Xiaohongshu for any China-adjacent strategy. Carries trust-layer + service functionality — less awareness-driving, more retention / service. <strong>Also managed by China desk.</strong></p>
+              <p class="pc-note"><strong>Higher fit than Xiaohongshu for us.</strong> XHS is stronger on awareness; WeChat is the <strong>conversion channel</strong> — 1:1 service, Official Account broadcasts, group-driven trust. The <strong>Alipay/Ant relationship</strong> carries meaningfully through the WeChat ecosystem for overseas-Chinese operators considering WF. Limited absolute audience per region, but highest-intent audience we have.</p>
             </div>
             <div>
-              <span class="pc-col-label">Our audience presence by region</span>
+              <span class="pc-col-label">Chinese-speaking audience by region</span>
               <div class="region-mini">
-                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill low" style="width: 25%"></div></div><span class="rm-val">Low</span></div>
-                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 18%"></div></div><span class="rm-val">Low</span></div>
-                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 48%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 80%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 72%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">overseas CN</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 22%"></div></div><span class="rm-val">Low</span></div>
                 <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 12%"></div></div><span class="rm-val">Negligible</span></div>
-                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 70%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">Very high</span></div>
                 <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 28%"></div></div><span class="rm-val">Low</span></div>
-                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill med" style="width: 40%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
               </div>
             </div>
           </div>
@@ -3987,8 +4207,8 @@
             <span class="pc-name">Blog &amp; SEO</span>
             <div class="pc-fit">
               <span class="pc-fit-label">WF fit</span>
-              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 88%;"></div></div>
-              <span class="pc-fit-val">88%</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 95%;"></div></div>
+              <span class="pc-fit-val">95%</span>
             </div>
           </div>
           <div class="pc-body">
@@ -3997,10 +4217,10 @@
               <div class="pillar-chips">
                 <span class="pillar-chip">Educational evergreen</span>
                 <span class="pillar-chip">Flagship research (hub)</span>
-                <span class="pillar-chip tight">Milestone (long-form)</span>
+                <span class="pillar-chip">Milestone (long-form)</span>
                 <span class="pillar-chip tight">PR-coded</span>
               </div>
-              <p class="pc-note">Compounds over 3-7 years. Flagship asset lives here and gets distributed everywhere else. Search-intent audience is the highest-intent audience we have.</p>
+              <p class="pc-note"><strong>Highest-fit surface we have — above any social network.</strong> Compounds over 3-7 years. Search-intent is the highest-intent audience in the funnel. Flagship asset lives here and gets distributed everywhere else.</p>
             </div>
             <div>
               <span class="pc-col-label">Our audience presence by region</span>
@@ -4008,45 +4228,11 @@
                 <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">LATAM <span class="rm-sub">MX · BR</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 65%"></div></div><span class="rm-val">Mid</span></div>
                 <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 65%"></div></div><span class="rm-val">Mid</span></div>
                 <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
                 <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
                 <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Email -->
-        <div class="platform-card">
-          <div class="pc-head">
-            <span class="pc-name">Email</span>
-            <div class="pc-fit">
-              <span class="pc-fit-label">WF fit</span>
-              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 80%;"></div></div>
-              <span class="pc-fit-val">80%</span>
-            </div>
-          </div>
-          <div class="pc-body">
-            <div>
-              <span class="pc-col-label">Best content types</span>
-              <div class="pillar-chips">
-                <span class="pillar-chip">Flagship nurture sequences</span>
-                <span class="pillar-chip">Educational drips</span>
-                <span class="pillar-chip tight">Milestone announcements</span>
-              </div>
-              <p class="pc-note">Mid-funnel work. Carries flagship lead-magnet nurture + milestone moments to the existing list. Universal reach — no regional variance.</p>
-            </div>
-            <div>
-              <span class="pc-col-label">Our audience presence by region</span>
-              <div class="region-mini">
-                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
-                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 80%"></div></div><span class="rm-val">High</span></div>
-                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
-                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
-                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
-                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill med" style="width: 62%"></div></div><span class="rm-val">Mid</span></div>
-                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 80%"></div></div><span class="rm-val">High</span></div>
               </div>
             </div>
           </div>
@@ -4223,123 +4409,144 @@
         <span class="section-num">§ 4b</span>
         <span class="section-divider"></span>
       </div>
-      <h2>An experiment worth running.</h2>
-      <p class="intro-p">The hypothetical composition above is what the evidence <em>across eight competitors</em> suggests fits our profile. But averaging competitors dulls commitment. This section proposes a deliberate, <strong>time-bounded experiment</strong>: push hard on the two pillars where we have clearest regional leverage <em>today</em> (creators and short-form), pull back the long-horizon pillars that don't pay off inside a test window, and measure the demand-gen lift.</p>
+      <h2>The aggressive play.</h2>
+      <p class="intro-p">Not an experiment in the tentative sense — a deliberate <strong>strategic shift</strong>. For a defined period we stress-test upper-funnel's ability to fuel demand-gen channels by pulling investment from long-horizon pillars and concentrating it on regional creators and short-form. This <em>is</em> an experiment, but framing it as "small test on the side" would understate what's changing: this is a material shift in how we deploy resources.</p>
 
       <div class="experiment-banner">
-        <span class="exp-label">Experiment hypothesis</span>
-        <h4>Can creator credibility + milestone narrative do the trust-earning job that branded content did last year — while short-form carries the demand-gen load?</h4>
-        <p>Last year we invested heavily in <strong>follower accounts and branded content</strong> to make WorldFirst look big — a trust-layer play most fintechs run by default. This experiment tests whether that same trust layer can be earned more cheaply through <strong>creator credibility</strong> and <strong>milestone narrative</strong>, freeing budget for acquisition-focused short-form that converts in weeks, not quarters.</p>
+        <span class="exp-label">The strategic shift</span>
+        <h4>Stress-test upper-funnel to build awareness for our demand-gen channels — using creators + short-form as the engine, milestone as the trust substitute, and pulling back everything else.</h4>
+        <p>Last year we invested heavily in <strong>follower accounts and branded content</strong> to make WorldFirst look big — a trust-layer play most fintechs run by default. This shift tests whether the same trust can be earned more cheaply through <strong>creator credibility + milestone narrative</strong>, while short-form and creator scale drive the awareness volume that feeds website traffic, ads, and demand-gen conversion.</p>
       </div>
 
-      <h3>The experiment composition</h3>
-      <p>Target: <strong class="pink">10 million impressions per month</strong> in priority regions, with creator contacts already lined up for rapid go-live.</p>
+      <h3>The shift composition</h3>
+      <p>Target: <strong class="pink">10 million impressions per month</strong> in priority regions, driving traffic to website + direct-to-download ads. Creator contacts already lined up for rapid go-live.</p>
 
       <figure class="comp-figure">
         <div class="comp-figure-head">
           <img src="images/wf_logo.webp" alt="" style="height: 24px; width: auto; border-radius: 0;">
-          <span class="ft">Experiment composition</span>
+          <span class="ft">Aggressive composition</span>
           <span class="fl" style="color: #C75016;">Creator + short-form push</span>
         </div>
         <div class="comp-rows">
-          <div class="comp-row"><span class="comp-label">B · Regional creators + local</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 87.5%;"></div></div><span class="comp-val">35%</span></div>
-          <div class="comp-row"><span class="comp-label">G · Platform-native short-form</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 62.5%;"></div></div><span class="comp-val">25%</span></div>
-          <div class="comp-row"><span class="comp-label">E · Milestone / momentum</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 37.5%;"></div></div><span class="comp-val">15%</span></div>
-          <div class="comp-row"><span class="comp-label">C · Educational evergreen</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 25%;"></div></div><span class="comp-val">10%</span></div>
-          <div class="comp-row"><span class="comp-label">A · Flagship research</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 25%;"></div></div><span class="comp-val">10%</span></div>
+          <div class="comp-row"><span class="comp-label">B · Regional creators + local</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 100%;"></div></div><span class="comp-val">70%</span></div>
+          <div class="comp-row"><span class="comp-label">G · Platform-native short-form</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 25%;"></div></div><span class="comp-val">10%</span></div>
+          <div class="comp-row"><span class="comp-label">E · Milestone / momentum</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 25%;"></div></div><span class="comp-val">10%</span></div>
+          <div class="comp-row"><span class="comp-label">C · Educational evergreen</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 12.5%;"></div></div><span class="comp-val">5%</span></div>
           <div class="comp-row"><span class="comp-label">F · PR-coded / earned media</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 12.5%;"></div></div><span class="comp-val">5%</span></div>
+          <div class="comp-row"><span class="comp-label">A · Flagship research</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 0%;"></div></div><span class="comp-val">0%</span></div>
           <div class="comp-row"><span class="comp-label">D · Lifestyle / cultural</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 0%;"></div></div><span class="comp-val">0%</span></div>
         </div>
         <div class="comp-commentary">
-          <strong>Creators to 35%, short-form to 25%</strong> — the two pillars we can stand up fastest (Steven has creator contacts; short-form production is cheap and iterative). <strong>Milestone held at 15%</strong> — the trust-layer function survives, routed through scale signals rather than branded-content production. <strong>Flagship + educational pulled back to 10% each</strong> — they compound over years, not experiment windows. <strong>Lifestyle removed</strong> — register mismatch for B2B SME buyers. <strong>PR-coded retained at 5%</strong> — the method of last resort, kept warm.
+          <strong>Creators to 70%</strong> — the dominant bet. Regional creators and local faces do the heavy lifting for awareness volume + trust-earning simultaneously. <strong>Short-form at 10%</strong> — deployed selectively where platform fit is strong (XHS, YouTube Shorts, Vietnam TikTok). <strong>Milestone held at 10%</strong> — the cheapest trust-layer substitute, kept active. <strong>Educational cut to 5%</strong>, <strong>flagship paused at 0%</strong> — they compound over years, not within our stress-test window. <strong>PR kept at 5%</strong> as the method of last resort. <strong>Lifestyle removed</strong> — register mismatch for B2B SME buyers.
         </div>
       </figure>
 
-      <h3>Hypothetical vs. experiment — the delta</h3>
-      <div class="table-wrap">
-        <table class="compare">
-          <thead>
-            <tr>
-              <th>Pillar</th>
-              <th>Hypothetical (evidence-derived)</th>
-              <th>Experiment (creator + short-form)</th>
-              <th>Δ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="brand">B · Regional creators + local</td><td>20-25%</td><td>35%</td><td class="delta-up">+10 to 15</td></tr>
-            <tr><td class="brand">G · Platform-native short-form</td><td>~10%</td><td>25%</td><td class="delta-up">+15</td></tr>
-            <tr><td class="brand">E · Milestone / momentum</td><td>10-15%</td><td>15%</td><td class="delta-flat">±0</td></tr>
-            <tr><td class="brand">A · Flagship research</td><td>20-25%</td><td>10%</td><td class="delta-down">−10 to 15</td></tr>
-            <tr><td class="brand">C · Educational evergreen</td><td>20-25%</td><td>10%</td><td class="delta-down">−10 to 15</td></tr>
-            <tr><td class="brand">F · PR-coded / earned media</td><td>5-10%</td><td>5%</td><td class="delta-flat">±0</td></tr>
-            <tr><td class="brand">D · Lifestyle / cultural</td><td>5-10%</td><td>0%</td><td class="delta-down">−5 to 10</td></tr>
-          </tbody>
-        </table>
+      <h3>Hypothetical vs. aggressive — the delta</h3>
+      <p class="fine">Bar length shows the size of the change per pillar. <span style="color: #15803D; font-weight: 600;">Green bars</span> go right = increases above hypothetical. <span style="color: var(--wf-pink-dark); font-weight: 600;">Pink bars</span> go left = decreases from hypothetical.</p>
+
+      <div class="delta-bar-chart">
+        <div class="dbc-head">
+          <span>Pillar</span>
+          <div class="dbc-axis">
+            <span>−25 cut</span>
+            <span class="zero">0</span>
+            <span>+50 boost</span>
+          </div>
+          <span style="text-align: right;">Δ pts</span>
+        </div>
+        <div class="dbc-row">
+          <span class="dbc-label">B · Regional creators + local</span>
+          <div class="dbc-track"><div class="dbc-fill pos" style="width: 48%;"></div></div>
+          <span class="dbc-val pos">48</span>
+        </div>
+        <div class="dbc-row">
+          <span class="dbc-label">G · Platform-native short-form</span>
+          <div class="dbc-track"></div>
+          <span class="dbc-val flat">±0</span>
+        </div>
+        <div class="dbc-row">
+          <span class="dbc-label">E · Milestone / momentum</span>
+          <div class="dbc-track"><div class="dbc-fill neg" style="width: 2%;"></div></div>
+          <span class="dbc-val neg">−2</span>
+        </div>
+        <div class="dbc-row">
+          <span class="dbc-label">F · PR-coded / earned media</span>
+          <div class="dbc-track"><div class="dbc-fill neg" style="width: 2%;"></div></div>
+          <span class="dbc-val neg">−2</span>
+        </div>
+        <div class="dbc-row">
+          <span class="dbc-label">D · Lifestyle / cultural</span>
+          <div class="dbc-track"><div class="dbc-fill neg" style="width: 7%;"></div></div>
+          <span class="dbc-val neg">−7</span>
+        </div>
+        <div class="dbc-row">
+          <span class="dbc-label">C · Educational evergreen</span>
+          <div class="dbc-track"><div class="dbc-fill neg" style="width: 17%;"></div></div>
+          <span class="dbc-val neg">−17</span>
+        </div>
+        <div class="dbc-row">
+          <span class="dbc-label">A · Flagship research</span>
+          <div class="dbc-track"><div class="dbc-fill neg" style="width: 22%;"></div></div>
+          <span class="dbc-val neg">−22</span>
+        </div>
       </div>
 
       <h3>Pros and cons of the shift</h3>
-      <div class="two-col">
-        <div>
-          <h5><span class="dot"></span>Pros</h5>
-          <p><strong>Fast demand signal.</strong> Creator activations and short-form show measurable effects in weeks — flagship research compounds over 12-24 months.</p>
-          <p><strong>Near-term executability.</strong> Steven already has regional creator contacts; short-form production doesn't need in-house studio capacity.</p>
-          <p><strong>Regional leverage.</strong> One creator per priority region beats any amount of generic branded content in a market where the brand is unknown.</p>
-          <p><strong>Budget efficiency.</strong> A single flagship research asset costs <strong class="pink">$80-300k</strong>. The same money funds multi-region creator programs and dozens of short-form tests.</p>
-          <p><strong>Product-led virality has space.</strong> Our product saves customers real money (a 5× delta on FX is visible in a single short clip). Letting the product explain itself is cheaper than teaching a category.</p>
-          <p><strong>Testable and reversible.</strong> Short experiment window means low opportunity cost if the hypothesis fails.</p>
+
+      <div class="proscons-stacked">
+        <div class="pc-block pros">
+          <h4><span class="dot"></span>Pros</h4>
+          <div class="pc-grid">
+            <p><strong>Fast demand signal.</strong> Creator activations and short-form show measurable effects in weeks — flagship research compounds over 12-24 months.</p>
+            <p><strong>Near-term executability.</strong> Creator contacts already lined up; short-form production doesn't need in-house studio capacity.</p>
+            <p><strong>Regional leverage.</strong> One creator per priority region beats any amount of generic branded content in a market where the brand is unknown.</p>
+            <p><strong>Budget efficiency.</strong> A single flagship research asset costs <strong class="pink">$80-300k</strong>. The same money funds multi-region creator programs and dozens of short-form tests.</p>
+            <p><strong>Product-led virality has space.</strong> Our product saves customers real money (a 5× delta on FX is visible in a single clip). Letting the product explain itself is cheaper than teaching a category.</p>
+            <p><strong>Testable and reversible.</strong> A defined stress-test window means limited opportunity cost if the strategy under-performs.</p>
+          </div>
         </div>
-        <div>
-          <h5 class="alt"><span class="dot"></span>Cons</h5>
-          <p><strong>Trust-layer erosion risk.</strong> Branded content + follower accounts were building institutional credibility. Pulling them leaves a gap that creator credibility may or may not fill.</p>
-          <p><strong>SEO opportunity cost.</strong> Educational evergreen compounds over 3-7 years. Pulling back now forfeits permanent future traffic.</p>
-          <p><strong>B2B trust hierarchy.</strong> SME buyers weight <em>institutional signals</em> (research, press, Bloomberg) more heavily than creator endorsements. Creators can feel promotional.</p>
-          <p><strong>Creator concentration risk.</strong> If a creator under-performs or goes off-message, we absorb the brand consequence in a region where we just invested.</p>
-          <p><strong>Short-form platform risk.</strong> Revolut's "we haven't cracked TikTok" warning applies. Not every platform rewards finance content regardless of audience presence.</p>
-          <p><strong>Recovery cost.</strong> Rebuilding flagship + educational content after a failed experiment is a 6-12 month re-ramp, not a flip of the switch.</p>
+
+        <div class="pc-block cons">
+          <h4><span class="dot"></span>Cons</h4>
+          <div class="pc-grid">
+            <p><strong>Trust-layer erosion risk.</strong> Branded content + follower accounts were building institutional credibility. Pulling them leaves a gap that creator credibility may or may not fill.</p>
+            <p><strong>SEO opportunity cost.</strong> Educational evergreen compounds over 3-7 years. Pulling back now forfeits permanent future traffic.</p>
+            <p><strong>B2B trust hierarchy.</strong> SME buyers weight <em>institutional signals</em> (research, press, Bloomberg) more heavily than creator endorsements. Creators can feel promotional.</p>
+            <p><strong>Creator concentration risk.</strong> If a creator under-performs or goes off-message, we absorb the brand consequence in a region where we just invested.</p>
+            <p><strong>Platform-fit risk.</strong> Revolut's "we haven't cracked TikTok" warning applies — not every platform rewards finance content regardless of audience presence.</p>
+            <p><strong>Recovery cost.</strong> Rebuilding flagship + educational content after a pullback is a 6-12 month re-ramp, not a flip of a switch.</p>
+          </div>
         </div>
       </div>
 
-      <h3>Target, measurement, and kill criteria</h3>
-      <div class="measurement">
-        <h5>Measurement plan</h5>
-        <dl>
-          <dt>North Star</dt>
-          <dd><strong>10M impressions / month</strong> in priority regions (paid + organic, aggregate across UK, SEA, EEA, Vietnam, Longtail).</dd>
+      <h3>What we're actually measuring</h3>
 
-          <dt>Primary metric</dt>
-          <dd>Attributed <strong>qualified signups per region</strong> — the demand-gen lift we're actually buying.</dd>
+      <div class="measurement-v2">
+        <div class="mv2-head">Deliverables from the aggressive play</div>
 
-          <dt>Secondary</dt>
-          <dd><strong>Brand search volume</strong> per region — does it grow independently of creator posts? (Proxy for trust-layer health.)</dd>
+        <div class="mv2-primary">
+          <div class="mv2-big">10M<span style="font-size: 0.6em;">/mo</span></div>
+          <div class="mv2-big-label"><strong>Impressions per month</strong> in priority regions — the primary volume metric. Delivered via regional creators + short-form, amplified through paid where it earns the spend.</div>
+        </div>
 
-          <dt>Tertiary</dt>
-          <dd><strong>Cost-per-qualified-lead</strong> blended across the experiment vs. last year's baseline.</dd>
+        <p class="fine" style="margin-bottom: 14px;">Beyond impressions, the shift drives traffic to <strong>website</strong> + potentially to <strong>direct-to-download ads</strong>. Each touchpoint has a deliverable we track:</p>
 
-          <dt>Control</dt>
-          <dd>Hold <strong>1-2 priority regions on the hypothetical composition</strong> as baseline. Without a control we can't attribute lift to the composition — we just see the macro.</dd>
+        <dl class="mv2-deliverables">
+          <dt>Impressions</dt>
+          <dd>The volume metric — how many times our content lands in front of target buyers across priority regions.</dd>
 
-          <dt>Duration</dt>
-          <dd><strong>3 months initial</strong>, mid-point review at week 8, full evaluation at 6 months.</dd>
+          <dt>Website audience</dt>
+          <dd>People who click through and become part of the WF website audience. A <strong>built audience</strong> is a compounding asset for downstream remarketing, email, and direct conversion.</dd>
 
-          <dt>Kill criteria</dt>
-          <dd>If CPQL deteriorates <strong>&gt;25% for 8 consecutive weeks</strong>, <em>or</em> brand-search volume drops in experiment regions vs. control, pause and reassess.</dd>
+          <dt>Website visits</dt>
+          <dd>Raw traffic volume to WF.com. Separates curiosity-level from deeper engagement.</dd>
 
-          <dt>Scale criteria</dt>
-          <dd>If attributed demand-gen lifts <strong>&gt;2× baseline</strong> with brand-search steady, rebalance toward experiment composition across all priority regions.</dd>
+          <dt>Time spent</dt>
+          <dd>How long people actually engage — watching, reading, scrolling. Engagement depth is a quality signal on top of visit volume.</dd>
+
+          <dt>Instant conversion</dt>
+          <dd>How many impressions convert <em>directly</em>, on the same visit — the tight loop signal. What share of this content is doing the acquisition job right now vs. feeding the longer funnel.</dd>
         </dl>
-      </div>
-
-      <h3>The call</h3>
-      <p>Worth running — with two hedges.</p>
-      <ol class="call-list">
-        <li><strong>Hold milestone narrative at full 15%.</strong> It's the cheapest trust-layer substitute. The role branded content + follower accounts played last year (signalling scale and stability) can be carried by milestone content at a fraction of the cost — and we're currently under-leveraging this pillar anyway.</li>
-        <li><strong>Keep 1-2 priority regions on the hypothetical composition as control.</strong> Running both compositions in parallel is how we learn. Running the experiment everywhere is how we guess.</li>
-      </ol>
-
-      <div class="callout">
-        <span class="callout-label">The frame</span>
-        <p>The hypothetical composition is the <em>evidence-averaged</em> answer — the shape that emerges from averaging eight competitor playbooks. The experiment is the <em>committed bet</em> — the shape that picks the two pillars we can move fastest on and tests them hard. Neither is right in the abstract. Running them side by side is how we find out which one earns its weight in our data.</p>
       </div>
     </section>
 
