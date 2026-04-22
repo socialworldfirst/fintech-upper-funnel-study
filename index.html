@@ -528,6 +528,187 @@
   .tag.neutral { background: #EEF2F9; color: var(--ink); }
   .tag.warm { background: #FFF4EC; color: #C75016; }
 
+  /* ==========  BRAND PROFILE PANEL  ========== */
+  .brand-profile {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 16px;
+    margin: 20px 0 28px;
+  }
+  @media (max-width: 720px) {
+    .brand-profile { grid-template-columns: 1fr; }
+  }
+  .bp-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .bp-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wf-pink);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .bp-quote {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 72;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 16px;
+    letter-spacing: -0.005em;
+  }
+  .bp-facts {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 7px 14px;
+    margin: 0;
+  }
+  .bp-facts dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+    padding-top: 3px;
+  }
+  .bp-facts dd {
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* Lifecycle strip */
+  .lifecycle-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    margin: 4px 0 8px;
+  }
+  .lifecycle-stage {
+    background: var(--paper-warm);
+    color: var(--ink-softer);
+    padding: 9px 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid var(--line-soft);
+    position: relative;
+    line-height: 1.2;
+  }
+  .lifecycle-stage.past {
+    background: var(--wf-pink-softer);
+    color: var(--wf-pink-dark);
+    border-color: var(--wf-pink-softer);
+    opacity: 0.6;
+  }
+  .lifecycle-stage.active {
+    background: var(--wf-pink);
+    color: white;
+    border-color: var(--wf-pink);
+    box-shadow: 0 2px 8px rgba(230, 24, 95, 0.25);
+  }
+  .lifecycle-stage.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--wf-pink);
+    border: 2px solid var(--paper);
+  }
+  .lifecycle-note {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    margin: 14px 0 0;
+  }
+
+  /* Compact channel mix */
+  .cmx-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 4px 0 0;
+  }
+  .cmx-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 40px;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+  }
+  .cmx-label { color: var(--ink); line-height: 1.3; }
+  .cmx-bar {
+    background: var(--paper-warm);
+    height: 9px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .cmx-fill {
+    height: 100%;
+    background: var(--wf-pink);
+    border-radius: 2px;
+  }
+  .cmx-fill.alt { background: #C8CFE5; }
+  .cmx-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--ink);
+    text-align: right;
+    font-size: 11.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cmx-note {
+    margin: 10px 0 0;
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .cmx-note strong { color: var(--ink); }
+
+  /* Pillar channel-mix figure */
+  .pillar-channels {
+    background: var(--paper-warm);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .pillar-channels .pch-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .pillar-channels .pch-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wf-pink);
+    font-weight: 600;
+  }
+  .pillar-channels .pch-sub {
+    font-size: 12px;
+    color: var(--ink-softer);
+    margin-left: auto;
+  }
+
   /* ==========  CAMPAIGN FIGURE  ========== */
   .case-figure {
     margin: 32px 0;
@@ -1441,6 +1622,38 @@
           <span class="tag warm">Narrative-led</span>
         </div>
 
+        <aside class="brand-profile">
+          <div class="bp-card">
+            <span class="bp-label">Proposition</span>
+            <p class="bp-quote">"Spend management built for finance teams — one card, one platform, instant CFO visibility."</p>
+            <dl class="bp-facts">
+              <dt>Founded</dt><dd>2015 · Copenhagen</dd>
+              <dt>Buyer</dt><dd>CFOs of mid-market European SMBs</dd>
+              <dt>Category</dt><dd>Spend management · B2B SaaS</dd>
+            </dl>
+          </div>
+          <div class="bp-card">
+            <span class="bp-label">Lifecycle position</span>
+            <div class="lifecycle-strip">
+              <div class="lifecycle-stage past">Pre</div>
+              <div class="lifecycle-stage past">Breakthrough</div>
+              <div class="lifecycle-stage active">Growth</div>
+              <div class="lifecycle-stage">Mature</div>
+            </div>
+            <p class="lifecycle-note">Known across core EU markets; still breakthrough-stage in newer regions.</p>
+
+            <span class="bp-label" style="margin-top: 18px;">Growth channels</span>
+            <div class="cmx-rows">
+              <div class="cmx-row"><span class="cmx-label">LinkedIn</span><div class="cmx-bar"><div class="cmx-fill" style="width: 75%"></div></div><span class="cmx-val">30%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Blog / SEO</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Email</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Facebook</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+              <div class="cmx-row"><span class="cmx-label">OOH · Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            </div>
+            <p class="cmx-note">Counter-default <strong>Facebook</strong> to reach CFOs off-duty; <strong>LinkedIn</strong> heavy for authority distribution of the flagship Playbook.</p>
+          </div>
+        </aside>
+
         <figure class="case-figure break-out">
           <div class="img-wrap tall">
             <img src="images/campaigns/pleo_cfo_playbook.png" alt="Pleo CFO's Playbook for 2025 cover — illustration of two finance leaders working at a table with the title 'The CFO's Playbook for 2025' above them">
@@ -1531,6 +1744,38 @@
           <span class="tag neutral">Multi-region</span>
           <span class="tag warm">Creator-led</span>
         </div>
+
+        <aside class="brand-profile">
+          <div class="bp-card">
+            <span class="bp-label">Proposition</span>
+            <p class="bp-quote">"Mobile-first banking without the fees — a better way for Latin America."</p>
+            <dl class="bp-facts">
+              <dt>Founded</dt><dd>2013 · São Paulo</dd>
+              <dt>Buyer</dt><dd>LatAm consumer banking, mobile-first</dd>
+              <dt>Category</dt><dd>Neobank · consumer</dd>
+            </dl>
+          </div>
+          <div class="bp-card">
+            <span class="bp-label">Lifecycle position</span>
+            <div class="lifecycle-strip">
+              <div class="lifecycle-stage past">Pre</div>
+              <div class="lifecycle-stage past">Breakthrough</div>
+              <div class="lifecycle-stage active">Growth</div>
+              <div class="lifecycle-stage past">Mature</div>
+            </div>
+            <p class="lifecycle-note"><strong>Simultaneous stages by region:</strong> Mature in Brazil, Growth in Mexico, Breakthrough in Colombia and newer markets.</p>
+
+            <span class="bp-label" style="margin-top: 18px;">Growth channels</span>
+            <div class="cmx-rows">
+              <div class="cmx-row"><span class="cmx-label">Instagram</span><div class="cmx-bar"><div class="cmx-fill" style="width: 75%"></div></div><span class="cmx-val">30%</span></div>
+              <div class="cmx-row"><span class="cmx-label">TikTok</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+              <div class="cmx-row"><span class="cmx-label">YouTube</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Press · Owned</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+              <div class="cmx-row"><span class="cmx-label">X · Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+            </div>
+            <p class="cmx-note">Channel weights vary by region — regional creators deploy onto their audience's native platform. Milestone content distributes separately via press + owned.</p>
+          </div>
+        </aside>
 
         <figure class="case-figure break-out">
           <div class="img-wrap">
@@ -1636,6 +1881,38 @@
           <span class="tag warm">Lifestyle-led</span>
         </div>
 
+        <aside class="brand-profile">
+          <div class="bp-card">
+            <span class="bp-label">Proposition</span>
+            <p class="bp-quote">"A bank that works like it's 2025 — instant notifications, budgets that help, a card that's a little bit fun."</p>
+            <dl class="bp-facts">
+              <dt>Founded</dt><dd>2015 · London</dd>
+              <dt>Buyer</dt><dd>UK digital-native consumers, Gen Z / Millennials</dd>
+              <dt>Category</dt><dd>Neobank · consumer</dd>
+            </dl>
+          </div>
+          <div class="bp-card">
+            <span class="bp-label">Lifecycle position</span>
+            <div class="lifecycle-strip">
+              <div class="lifecycle-stage past">Pre</div>
+              <div class="lifecycle-stage past">Breakthrough</div>
+              <div class="lifecycle-stage active">Growth</div>
+              <div class="lifecycle-stage">Mature</div>
+            </div>
+            <p class="lifecycle-note">Growth-stage in UK core market; currently breakthrough in US expansion.</p>
+
+            <span class="bp-label" style="margin-top: 18px;">Growth channels</span>
+            <div class="cmx-rows">
+              <div class="cmx-row"><span class="cmx-label">Instagram</span><div class="cmx-bar"><div class="cmx-fill" style="width: 87.5%"></div></div><span class="cmx-val">35%</span></div>
+              <div class="cmx-row"><span class="cmx-label">TikTok</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+              <div class="cmx-row"><span class="cmx-label">X / Twitter</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+              <div class="cmx-row"><span class="cmx-label">LinkedIn</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+              <div class="cmx-row"><span class="cmx-label">FB · Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+            </div>
+            <p class="cmx-note"><strong>IG + TikTok dominate</strong> — where the 3-person team publishes 20 posts/week. Product content lives off-social (blog, email).</p>
+          </div>
+        </aside>
+
         <figure class="case-figure break-out">
           <div class="img-wrap">
             <img src="images/campaigns/monzo_social.jpg" alt="Monzo Instagram post showing a woman in bed holding tea with Monzo hot-coral cards covering her eyes, caption reads 'how it feels when you decide to stay inside and save money' with comment thread from followers including a reply from Wise">
@@ -1726,6 +2003,38 @@
           <span class="tag neutral">Breakthrough era</span>
           <span class="tag warm">PR-led</span>
         </div>
+
+        <aside class="brand-profile">
+          <div class="bp-card">
+            <span class="bp-label">Proposition</span>
+            <p class="bp-quote">"Real exchange rates, zero hidden fees — banks' FX margins in the open."</p>
+            <dl class="bp-facts">
+              <dt>Founded</dt><dd>2011 · London (as TransferWise)</dd>
+              <dt>Buyer</dt><dd>Cross-border money senders, expats, SMBs</dd>
+              <dt>Era covered</dt><dd>2014-2018 (pre-breakthrough → breakthrough)</dd>
+            </dl>
+          </div>
+          <div class="bp-card">
+            <span class="bp-label">Lifecycle position <span style="color: var(--ink-softer); font-family: 'Inter', sans-serif; text-transform: none; letter-spacing: 0; font-weight: 500;">(during this era)</span></span>
+            <div class="lifecycle-strip">
+              <div class="lifecycle-stage past">Pre</div>
+              <div class="lifecycle-stage active">Breakthrough</div>
+              <div class="lifecycle-stage">Growth</div>
+              <div class="lifecycle-stage">Mature</div>
+            </div>
+            <p class="lifecycle-note">Era-specific: this case covers 2014-2018 breakthrough. <em>Current</em> Wise is mature globally — composition has completely shifted.</p>
+
+            <span class="bp-label" style="margin-top: 18px;">Growth channels (breakthrough era)</span>
+            <div class="cmx-rows">
+              <div class="cmx-row"><span class="cmx-label">PR / Press</span><div class="cmx-bar"><div class="cmx-fill" style="width: 100%"></div></div><span class="cmx-val">40%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Blog / SEO</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+              <div class="cmx-row"><span class="cmx-label">YouTube</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+              <div class="cmx-row"><span class="cmx-label">LinkedIn</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Facebook · Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+            </div>
+            <p class="cmx-note"><strong>PR-dominant</strong> — six Guardian pieces, press-covered protests, and a campaign-as-journalism podcast. Before social algorithms favoured brands, earned media <em>was</em> the distribution.</p>
+          </div>
+        </aside>
 
         <figure class="case-figure break-out">
           <div class="img-wrap">
@@ -1835,6 +2144,38 @@
           <span class="tag warm">Peer-register voice</span>
         </div>
 
+        <aside class="brand-profile">
+          <div class="bp-card">
+            <span class="bp-label">Proposition</span>
+            <p class="bp-quote">"Banking that doesn't charge you for being alive — no fees, early paycheck, built for people who live paycheck to paycheck."</p>
+            <dl class="bp-facts">
+              <dt>Founded</dt><dd>2012 · San Francisco</dd>
+              <dt>Buyer</dt><dd>Underbanked Americans, paycheck-to-paycheck consumers</dd>
+              <dt>Category</dt><dd>Neobank · consumer</dd>
+            </dl>
+          </div>
+          <div class="bp-card">
+            <span class="bp-label">Lifecycle position</span>
+            <div class="lifecycle-strip">
+              <div class="lifecycle-stage past">Pre</div>
+              <div class="lifecycle-stage past">Breakthrough</div>
+              <div class="lifecycle-stage active">Growth</div>
+              <div class="lifecycle-stage">Mature</div>
+            </div>
+            <p class="lifecycle-note">Growth-stage in US core market; social is trust layer, referrals convert.</p>
+
+            <span class="bp-label" style="margin-top: 18px;">Growth channels</span>
+            <div class="cmx-rows">
+              <div class="cmx-row"><span class="cmx-label">Instagram</span><div class="cmx-bar"><div class="cmx-fill" style="width: 75%"></div></div><span class="cmx-val">30%</span></div>
+              <div class="cmx-row"><span class="cmx-label">TikTok</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+              <div class="cmx-row"><span class="cmx-label">YouTube</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+              <div class="cmx-row"><span class="cmx-label">X / Twitter</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Referral · Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            </div>
+            <p class="cmx-note"><strong>Social earns the affinity; referral captures the conversion.</strong> 1.1M+ IG; lifestyle-register voice; community programs align social with real action.</p>
+          </div>
+        </aside>
+
         <figure class="case-figure break-out">
           <div class="img-wrap">
             <img src="images/campaigns/chime_social.png" alt="Chime social content grid — mosaic of brand imagery including 'Sidewalk Talks' campaign, multiple member photos, green Chime wordmark centred, festival and community shots">
@@ -1912,6 +2253,38 @@
           <span class="tag warm">YouTube-led</span>
         </div>
 
+        <aside class="brand-profile">
+          <div class="bp-card">
+            <span class="bp-label">Proposition</span>
+            <p class="bp-quote">"All your money in one app — spend globally, invest instantly, pay anyone anywhere."</p>
+            <dl class="bp-facts">
+              <dt>Founded</dt><dd>2015 · London</dd>
+              <dt>Buyer</dt><dd>Consumer + business, cross-border active, digital-native</dd>
+              <dt>Category</dt><dd>Super-app · financial services</dd>
+            </dl>
+          </div>
+          <div class="bp-card">
+            <span class="bp-label">Lifecycle position</span>
+            <div class="lifecycle-strip">
+              <div class="lifecycle-stage past">Pre</div>
+              <div class="lifecycle-stage past">Breakthrough</div>
+              <div class="lifecycle-stage active">Growth</div>
+              <div class="lifecycle-stage">Mature</div>
+            </div>
+            <p class="lifecycle-note">Growth-stage in UK/EU core; still breakthrough in US and parts of Asia.</p>
+
+            <span class="bp-label" style="margin-top: 18px;">Growth channels</span>
+            <div class="cmx-rows">
+              <div class="cmx-row"><span class="cmx-label">YouTube</span><div class="cmx-bar"><div class="cmx-fill" style="width: 87.5%"></div></div><span class="cmx-val">35%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Instagram</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+              <div class="cmx-row"><span class="cmx-label">LinkedIn</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+              <div class="cmx-row"><span class="cmx-label">TikTok</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+              <div class="cmx-row"><span class="cmx-label">X · Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            </div>
+            <p class="cmx-note"><strong>YouTube dominant</strong> — creator-native finance content runs long. TikTok openly underweighted ("we have not cracked it").</p>
+          </div>
+        </aside>
+
         <figure class="case-figure break-out">
           <div class="img-wrap tall">
             <img src="images/campaigns/revolut_sidemen.webp" alt="Revolut × Sidemen campaign photograph — seven Sidemen creators holding up their co-branded Revolut × SDMN debit cards while wearing SDMN sweatshirts, laughing together against a blue-and-white geometric backdrop">
@@ -1987,6 +2360,38 @@
           <span class="tag warm">Partnership-first</span>
         </div>
 
+        <aside class="brand-profile">
+          <div class="bp-card">
+            <span class="bp-label">Proposition</span>
+            <p class="bp-quote">"Corporate cards and spend software that actively saves your company money."</p>
+            <dl class="bp-facts">
+              <dt>Founded</dt><dd>2019 · New York</dd>
+              <dt>Buyer</dt><dd>Finance teams at growth-stage US companies</dd>
+              <dt>Category</dt><dd>Spend management · B2B SaaS</dd>
+            </dl>
+          </div>
+          <div class="bp-card">
+            <span class="bp-label">Lifecycle position</span>
+            <div class="lifecycle-strip">
+              <div class="lifecycle-stage past">Pre</div>
+              <div class="lifecycle-stage active">Breakthrough</div>
+              <div class="lifecycle-stage">Growth</div>
+              <div class="lifecycle-stage">Mature</div>
+            </div>
+            <p class="lifecycle-note">Breakthrough-stage US; product-led virality ($600M customer savings) doing heavy lifting.</p>
+
+            <span class="bp-label" style="margin-top: 18px;">Growth channels</span>
+            <div class="cmx-rows">
+              <div class="cmx-row"><span class="cmx-label">Paid PPC</span><div class="cmx-bar"><div class="cmx-fill" style="width: 87.5%"></div></div><span class="cmx-val">35%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Partnerships</span><div class="cmx-bar"><div class="cmx-fill" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+              <div class="cmx-row"><span class="cmx-label">LinkedIn</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Email · PR</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Social · Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+            </div>
+            <p class="cmx-note"><strong>Social is deliberately de-prioritised.</strong> ~$413K/month paid PPC captures high-intent search; accountant-partner channel distributes via trusted advisors.</p>
+          </div>
+        </aside>
+
         <h4>What they did</h4>
         <p>Ramp's growth philosophy <strong>explicitly de-emphasises social</strong>. Primary channels are paid PPC — <a href="https://foundationinc.co/lab/ppc-strategy/" target="_blank" rel="noopener" class="inline-link">Foundation Inc documents ~$413K/month at scale</a> — <a href="https://ramp.com/accounting-partnerships" target="_blank" rel="noopener" class="inline-link">accountant and partner networks</a>, and product-led virality (customers saving measurable money creates word of mouth).</p>
         <p>Social plays a supporting role: thought leadership from operators, executive posts, occasional founder content. The proof point: Ramp has publicly <a href="https://www.prnewswire.com/news-releases/ramp-passes-600m-in-savings-chosen-by-shopify-as-its-sole-expense-management-provider-301890477.html" target="_blank" rel="noopener" class="inline-link">scaled past $600M in customer savings</a>, a milestone announced via a Shopify-as-customer press release, not a social campaign.</p>
@@ -2061,6 +2466,38 @@
           <span class="tag neutral">SF-concentrated</span>
           <span class="tag warm">OOH-led</span>
         </div>
+
+        <aside class="brand-profile">
+          <div class="bp-card">
+            <span class="bp-label">Proposition</span>
+            <p class="bp-quote">"The financial OS for the world's most ambitious companies — corporate cards, banking, and rewards in one stack."</p>
+            <dl class="bp-facts">
+              <dt>Founded</dt><dd>2017 · San Francisco</dd>
+              <dt>Buyer</dt><dd>Startups and fast-growing tech companies</dd>
+              <dt>Category</dt><dd>Corporate cards · B2B financial OS</dd>
+            </dl>
+          </div>
+          <div class="bp-card">
+            <span class="bp-label">Lifecycle position</span>
+            <div class="lifecycle-strip">
+              <div class="lifecycle-stage past">Pre</div>
+              <div class="lifecycle-stage past">Breakthrough</div>
+              <div class="lifecycle-stage active">Growth</div>
+              <div class="lifecycle-stage">Mature</div>
+            </div>
+            <p class="lifecycle-note">Broke through via SF-concentrated billboards; now growth-stage US, expanding category.</p>
+
+            <span class="bp-label" style="margin-top: 18px;">Growth channels</span>
+            <div class="cmx-rows">
+              <div class="cmx-row"><span class="cmx-label">OOH / Billboards</span><div class="cmx-bar"><div class="cmx-fill" style="width: 75%"></div></div><span class="cmx-val">30%</span></div>
+              <div class="cmx-row"><span class="cmx-label">LinkedIn</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+              <div class="cmx-row"><span class="cmx-label">Paid Search</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+              <div class="cmx-row"><span class="cmx-label">X / Twitter</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+              <div class="cmx-row"><span class="cmx-label">YouTube · Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            </div>
+            <p class="cmx-note"><strong>OOH-breakthrough, LinkedIn-sustained.</strong> Billboards worked because the audience (SF startup founders) was geographically concentrated; productised as "Billboard Rewards" after.</p>
+          </div>
+        </aside>
 
         <h4>What they did</h4>
         <p>Brex's breakthrough came from <strong>out-of-home advertising</strong> — massive <a href="https://fortune.com/2021/09/22/advertising-covid-bay-area-startups-billboard-pandemic-marketing/" target="_blank" rel="noopener" class="inline-link">SF billboards</a> and subway takeovers concentrated in Bay Area startup neighbourhoods. <a href="https://www.onescreen.ai/blog/how-brex-used-billboards-to-unlock-the-ultimate-account-based-marketing-campaign-and-how-you-can-too" target="_blank" rel="noopener" class="inline-link">OneScreen.ai documents the ABM frame and ~10× ROI claim.</a></p>
@@ -2267,6 +2704,20 @@
           <span class="fit fit-strong">Strong</span>
           <span class="fine">Fintechs with proprietary transaction data have material advantage. Few playbooks transfer more cleanly to our profile.</span>
         </div>
+        <div class="pillar-channels">
+          <div class="pch-head">
+            <span class="pch-title">Where this pillar lives</span>
+            <span class="pch-sub">Typical channel distribution</span>
+          </div>
+          <div class="cmx-rows">
+            <div class="cmx-row"><span class="cmx-label">LinkedIn</span><div class="cmx-bar"><div class="cmx-fill" style="width: 75%"></div></div><span class="cmx-val">30%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Press / PR</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Blog / Web</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Email</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Webinars · Events</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+          </div>
+          <p class="cmx-note">Gated lead magnet on the website, syndicated to LinkedIn influencers, press-covered for credibility, drip-sequenced over email.</p>
+        </div>
       </div>
 
       <h3>Pillar B · Regional creator partnerships</h3>
@@ -2284,6 +2735,20 @@
           <span class="fit fit-strong">Strong</span>
           <span class="fine">A multi-region brand with low awareness is exactly where creator partnerships perform best. Main constraint is coordination bandwidth.</span>
         </div>
+        <div class="pillar-channels">
+          <div class="pch-head">
+            <span class="pch-title">Where this pillar lives</span>
+            <span class="pch-sub">Typical channel distribution</span>
+          </div>
+          <div class="cmx-rows">
+            <div class="cmx-row"><span class="cmx-label">YouTube</span><div class="cmx-bar"><div class="cmx-fill" style="width: 87.5%"></div></div><span class="cmx-val">35%</span></div>
+            <div class="cmx-row"><span class="cmx-label">TikTok</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Instagram</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Local (XHS · Kuaishou)</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+            <div class="cmx-row"><span class="cmx-label">X · Threads</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 12.5%"></div></div><span class="cmx-val">5%</span></div>
+          </div>
+          <p class="cmx-note">Platform density varies by region — creators deploy natively on their audience's platform. China markets skew to Xiaohongshu + Kuaishou; LatAm to IG + TikTok.</p>
+        </div>
       </div>
 
       <h3>Pillar C · Educational evergreen content</h3>
@@ -2300,6 +2765,20 @@
           <span class="lbl">Fit for us</span>
           <span class="fit fit-strong">Strong</span>
           <span class="fine">Education-driven categories benefit disproportionately. One of the highest-ROI pillars at any stage.</span>
+        </div>
+        <div class="pillar-channels">
+          <div class="pch-head">
+            <span class="pch-title">Where this pillar lives</span>
+            <span class="pch-sub">Typical channel distribution</span>
+          </div>
+          <div class="cmx-rows">
+            <div class="cmx-row"><span class="cmx-label">Blog / SEO</span><div class="cmx-bar"><div class="cmx-fill" style="width: 100%"></div></div><span class="cmx-val">45%</span></div>
+            <div class="cmx-row"><span class="cmx-label">YouTube long-form</span><div class="cmx-bar"><div class="cmx-fill" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+            <div class="cmx-row"><span class="cmx-label">LinkedIn articles</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Email drip</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Repurposed social</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+          </div>
+          <p class="cmx-note">Long-tail organic search is the compounding asset — social is distribution, not the asset itself.</p>
         </div>
       </div>
 
@@ -2319,6 +2798,20 @@
           <span class="fit fit-mod">Moderate (B2B-adapted)</span>
         </div>
         <p class="fine" style="margin-top: 16px;">A B2B-adapted register (small business lifestyle, sourcing, entrepreneurial culture) could work, but requires discovering a register that doesn't yet exist in a structured way in our category.</p>
+        <div class="pillar-channels">
+          <div class="pch-head">
+            <span class="pch-title">Where this pillar lives</span>
+            <span class="pch-sub">Typical channel distribution</span>
+          </div>
+          <div class="cmx-rows">
+            <div class="cmx-row"><span class="cmx-label">Instagram</span><div class="cmx-bar"><div class="cmx-fill" style="width: 87.5%"></div></div><span class="cmx-val">35%</span></div>
+            <div class="cmx-row"><span class="cmx-label">TikTok</span><div class="cmx-bar"><div class="cmx-fill" style="width: 75%"></div></div><span class="cmx-val">30%</span></div>
+            <div class="cmx-row"><span class="cmx-label">X / Twitter</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Facebook</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 12.5%"></div></div><span class="cmx-val">5%</span></div>
+          </div>
+          <p class="cmx-note">Register-specific — works where audiences are in non-purchase cognitive state. Weak fit for LinkedIn.</p>
+        </div>
       </div>
 
       <h3>Pillar E · Milestone and momentum narrative</h3>
@@ -2335,6 +2828,20 @@
           <span class="lbl">Fit for us</span>
           <span class="fit fit-strong">Strong · underused</span>
           <span class="fine">Any brand with 1M+ customers and multi-year history has material milestone content available. Most fintechs under-leverage this.</span>
+        </div>
+        <div class="pillar-channels">
+          <div class="pch-head">
+            <span class="pch-title">Where this pillar lives</span>
+            <span class="pch-sub">Typical channel distribution</span>
+          </div>
+          <div class="cmx-rows">
+            <div class="cmx-row"><span class="cmx-label">LinkedIn posts</span><div class="cmx-bar"><div class="cmx-fill" style="width: 87.5%"></div></div><span class="cmx-val">35%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Press releases</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+            <div class="cmx-row"><span class="cmx-label">X / Twitter</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Blog / Owned</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 12.5%"></div></div><span class="cmx-val">5%</span></div>
+          </div>
+          <p class="cmx-note">Scale signals perform best on professional and news-register platforms — where buyers make vendor-trust decisions.</p>
         </div>
       </div>
 
@@ -2353,6 +2860,20 @@
           <span class="fit fit-mod">Moderate · supporting</span>
           <span class="fine">The 2014-era Wise playbook is largely over. Works best when tied to flagship research rather than standalone.</span>
         </div>
+        <div class="pillar-channels">
+          <div class="pch-head">
+            <span class="pch-title">Where this pillar lives</span>
+            <span class="pch-sub">Typical channel distribution</span>
+          </div>
+          <div class="cmx-rows">
+            <div class="cmx-row"><span class="cmx-label">Tier-1 Press</span><div class="cmx-bar"><div class="cmx-fill" style="width: 100%"></div></div><span class="cmx-val">50%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Podcast</span><div class="cmx-bar"><div class="cmx-fill" style="width: 50%"></div></div><span class="cmx-val">20%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Op-eds / Analyst</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Wire / Syndication</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 25%"></div></div><span class="cmx-val">10%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 12.5%"></div></div><span class="cmx-val">5%</span></div>
+          </div>
+          <p class="cmx-note">Credibility compounds through the outlet's authority, not the brand's — Bloomberg, FT, WSJ, industry verticals.</p>
+        </div>
       </div>
 
       <h3>Pillar G · Platform-native short-form</h3>
@@ -2370,6 +2891,20 @@
           <span class="fit fit-mod">Variable by platform</span>
         </div>
         <p class="fine" style="margin-top: 16px;">Xiaohongshu for overseas Chinese shows strong fit. TikTok shows weaker fit for the reasons Revolut cites. YouTube Shorts is underexplored for B2B and may represent channel alpha.</p>
+        <div class="pillar-channels">
+          <div class="pch-head">
+            <span class="pch-title">Where this pillar lives</span>
+            <span class="pch-sub">Typical channel distribution</span>
+          </div>
+          <div class="cmx-rows">
+            <div class="cmx-row"><span class="cmx-label">TikTok</span><div class="cmx-bar"><div class="cmx-fill" style="width: 75%"></div></div><span class="cmx-val">30%</span></div>
+            <div class="cmx-row"><span class="cmx-label">YouTube Shorts</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Instagram Reels</span><div class="cmx-bar"><div class="cmx-fill" style="width: 62.5%"></div></div><span class="cmx-val">25%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Xiaohongshu · Local</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 37.5%"></div></div><span class="cmx-val">15%</span></div>
+            <div class="cmx-row"><span class="cmx-label">Other</span><div class="cmx-bar"><div class="cmx-fill alt" style="width: 12.5%"></div></div><span class="cmx-val">5%</span></div>
+          </div>
+          <p class="cmx-note">Cross-pillar format — the <em>container</em>, not the content. Can carry educational, lifestyle, or milestone material.</p>
+        </div>
       </div>
 
       <h3>Pillar fit summary</h3>
