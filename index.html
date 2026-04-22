@@ -528,6 +528,501 @@
   .tag.neutral { background: #EEF2F9; color: var(--ink); }
   .tag.warm { background: #FFF4EC; color: #C75016; }
 
+  /* ==========  PURPOSE CARDS  ========== */
+  .purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 24px 0;
+  }
+  @media (max-width: 680px) { .purpose-grid { grid-template-columns: 1fr; } }
+  .purpose-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    position: relative;
+  }
+  .purpose-card .p-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--wf-pink);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .purpose-card h5 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .purpose-card p {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+  }
+  .purpose-card .ex {
+    font-size: 11.5px;
+    color: var(--ink-softer);
+    font-style: italic;
+    margin-top: 6px;
+  }
+  .purpose-card.wf-relevant {
+    border-color: var(--wf-pink);
+    border-left-width: 3px;
+    background: var(--wf-pink-softer);
+  }
+  .purpose-card.wf-relevant .p-num { color: var(--wf-pink); }
+
+  /* ==========  BRAND PROPOSITION MAP  ========== */
+  .proposition-map {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px 48px 52px 64px;
+    margin: 28px 0;
+    overflow: hidden;
+  }
+  .pm-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-left: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .pm-inner::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    border-top: 1px dashed var(--line);
+  }
+  .pm-inner::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 50%;
+    border-left: 1px dashed var(--line);
+  }
+  .pm-y-label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pm-x-label {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+  }
+  .pm-axis-tip {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 500;
+  }
+  .pm-axis-tip.y-top { top: 18px; left: 32px; }
+  .pm-axis-tip.y-bot { bottom: 42px; left: 32px; }
+  .pm-axis-tip.x-left { bottom: 36px; left: 60px; }
+  .pm-axis-tip.x-right { bottom: 36px; right: 20px; text-align: right; }
+
+  .pm-dot {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--white);
+    border: 1.5px solid var(--line);
+    border-radius: 100px;
+    padding: 4px 10px 4px 6px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    transition: transform 150ms, box-shadow 150ms;
+    cursor: default;
+  }
+  .pm-dot:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+  }
+  .pm-dot img { width: 16px; height: 16px; border-radius: 3px; }
+  .pm-dot.wf {
+    background: var(--wf-pink);
+    border-color: var(--wf-pink);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(230, 24, 95, 0.35);
+    z-index: 5;
+  }
+  .pm-dot.wf::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1.5px solid var(--wf-pink);
+    border-radius: 100px;
+    opacity: 0.35;
+    pointer-events: none;
+    animation: pulse-ring 2.2s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.9); opacity: 0.55; }
+    70% { transform: scale(1.15); opacity: 0; }
+    100% { transform: scale(0.9); opacity: 0; }
+  }
+  .pm-closeness-note {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    max-width: 220px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    background: var(--wf-pink-softer);
+    border-radius: 6px;
+    padding: 8px 10px;
+    border-left: 2px solid var(--wf-pink);
+  }
+  .pm-closeness-note strong { color: var(--wf-pink-dark); display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; }
+
+  /* ==========  LIFECYCLE CURVE  ========== */
+  .lifecycle-curve {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 36px 48px;
+    margin: 28px 0;
+    overflow: hidden;
+  }
+  .lc-svg {
+    position: absolute;
+    left: 36px; right: 36px;
+    top: 40px; bottom: 56px;
+    width: calc(100% - 72px);
+    height: calc(100% - 96px);
+  }
+  .lc-svg path {
+    fill: none;
+    stroke: var(--wf-pink);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    opacity: 0.55;
+  }
+  .lc-svg path.area {
+    fill: url(#lc-gradient);
+    stroke: none;
+    opacity: 0.15;
+  }
+  .lc-y-label {
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+  }
+  .lc-stage-labels {
+    position: absolute;
+    bottom: 14px;
+    left: 36px;
+    right: 36px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+  }
+  .lc-stage-labels .lc-stage {
+    text-align: center;
+    padding-top: 6px;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  .lc-dot {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--white);
+    border: 1.5px solid var(--line);
+    border-radius: 100px;
+    padding: 3px 9px 3px 5px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 2;
+  }
+  .lc-dot img { width: 13px; height: 13px; border-radius: 3px; }
+  .lc-dot.wf {
+    background: var(--wf-pink);
+    border-color: var(--wf-pink);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(230, 24, 95, 0.35);
+    z-index: 5;
+  }
+  .lc-legend {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-size: 10px;
+    color: var(--ink-softer);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* ==========  PLATFORM CARD v2  ========== */
+  .platform-ecology-v2 {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .platform-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+  .platform-card.china-desk {
+    background: #FFF9F4;
+    border-left: 3px solid #C75016;
+  }
+  .pc-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line-soft);
+    flex-wrap: wrap;
+  }
+  .pc-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .china-desk-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #FFF1E8;
+    color: #C75016;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  .pc-fit {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pc-fit-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+  }
+  .pc-fit-bar {
+    width: 90px; height: 8px;
+    background: var(--paper-warm);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .pc-fit-fill {
+    height: 100%;
+    background: var(--wf-pink);
+    border-radius: 2px;
+  }
+  .pc-fit-fill.mod { background: #F59E0B; }
+  .pc-fit-fill.weak { background: #C8CFE5; }
+  .pc-fit-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    min-width: 36px;
+    text-align: right;
+  }
+  .pc-body {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 20px;
+  }
+  @media (max-width: 680px) { .pc-body { grid-template-columns: 1fr; gap: 16px; } }
+  .pc-col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .pillar-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 5px;
+  }
+  .pillar-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--wf-pink-softer);
+    color: var(--wf-pink-dark);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .pillar-chip.tight { background: var(--paper-warm); color: var(--ink-soft); }
+  .pc-note {
+    font-size: 12px;
+    color: var(--ink-softer);
+    line-height: 1.45;
+    margin-top: 8px;
+  }
+
+  /* Region rows (inline per platform) */
+  .region-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+  }
+  @media (max-width: 500px) { .region-mini { grid-template-columns: 1fr; } }
+  .rm-row {
+    display: grid;
+    grid-template-columns: 92px 1fr 28px;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+  }
+  .rm-label {
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .rm-label .rm-sub {
+    display: block;
+    font-size: 9px;
+    color: var(--ink-softer);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-top: 1px;
+  }
+  .rm-bar {
+    background: var(--paper-warm);
+    height: 6px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .rm-fill {
+    height: 100%;
+    background: var(--wf-pink);
+    border-radius: 2px;
+  }
+  .rm-fill.med { background: #F59E0B; }
+  .rm-fill.low { background: #C8CFE5; }
+  .rm-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-softer);
+    text-align: right;
+  }
+
+  /* Region weight reference strip */
+  .region-weights {
+    background: var(--paper-warm);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0 24px;
+  }
+  .region-weights .rw-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-softer);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .region-weights .rw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px 14px;
+    font-size: 12px;
+  }
+  .region-weights .rw-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .region-weights .rw-key {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .region-weights .rw-key .rw-sub {
+    color: var(--ink-softer);
+    font-size: 10.5px;
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  .region-weights .rw-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--wf-pink);
+    font-size: 12px;
+  }
+
   /* ==========  BRAND PROFILE PANEL  ========== */
   .brand-profile {
     display: grid;
@@ -1606,6 +2101,99 @@
         <span class="section-divider"></span>
       </div>
       <h2>The brand case studies.</h2>
+
+      <h3 style="margin-top: 40px;">First: what is upper-funnel <em>for</em>?</h3>
+      <p>Before reading case studies, it helps to name what upper-funnel work can actually do. We're currently experimenting with <strong>direct acquisition</strong> (§&nbsp;4b) — but across the eight brands studied, upper-funnel serves several other strategic purposes that look similar on the surface and are wildly different in the data. Knowing which purpose a brand is optimising for explains why their playbook looks the way it does.</p>
+
+      <div class="purpose-grid">
+        <div class="purpose-card wf-relevant">
+          <span class="p-num">01 · Primary for us</span>
+          <h5>Direct acquisition</h5>
+          <p>Content directly drives signups, qualified pipeline, paying customers. Success measured in CPA, CPL, attributed conversions.</p>
+          <p class="ex">Ramp (paid PPC + product-led virality). Brex (OOH → conversion funnel). Our §&nbsp;4b experiment.</p>
+        </div>
+        <div class="purpose-card wf-relevant">
+          <span class="p-num">02 · Secondary for us</span>
+          <h5>Trust layer for other growth mechanics</h5>
+          <p>Content earns affinity and credibility upstream of <em>another</em> mechanic that actually converts (referral, paid, sales). Paid converts better when trust is already there.</p>
+          <p class="ex">Chime (social voice earns referral willingness). Ramp (thought leadership supports outbound sales).</p>
+        </div>
+        <div class="purpose-card wf-relevant">
+          <span class="p-num">03 · Secondary for us</span>
+          <h5>Authority / enterprise sales enablement</h5>
+          <p>Content that gets cited in sales decks, investor briefings, partnership conversations. Doesn't convert on its own — it makes high-touch deals close.</p>
+          <p class="ex">Pleo CFO Playbook (sales teams cite the research directly). WF flagship data would do the same.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">04 · Historical</span>
+          <h5>Category creation</h5>
+          <p>Content defines what the category <em>is</em> for buyers who don't yet have a mental model. Villain framing, movement-building, PR-as-journalism.</p>
+          <p class="ex">Wise 2014-18 ("banks' hidden FX margins"). Pleo for "spend management" as a category. Cross-border payments is already a known category — this matters less for us now.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">05 · Not our play</span>
+          <h5>Defensive moat / market defence</h5>
+          <p>Content defends existing market share and keeps competitors out. Heavy on SEO evergreen and cultural relevance. Works at mature stage.</p>
+          <p class="ex">Wise today (SEO moat for cross-border terms). Mature Monzo (UK cultural presence).</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">06 · Not our play</span>
+          <h5>Cultural retention</h5>
+          <p>Content keeps existing users emotionally close to the brand. Job is <em>retention</em> not acquisition — works only after the brand has reached cultural presence.</p>
+          <p class="ex">Monzo UK (lifestyle memes, payday humour). Chime (1.1M+ IG community).</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">07 · Not our play</span>
+          <h5>Investor narrative / capital signalling</h5>
+          <p>Content demonstrates momentum for capital markets. Milestone posts, user counts, regulatory wins. Mostly a public-company concern.</p>
+          <p class="ex">Nubank F-1 era (every milestone was PR-coded). Public fintech quarterly narratives.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">08 · Not our play</span>
+          <h5>Talent / recruitment brand</h5>
+          <p>Content attracts engineering and operator talent. Reads as brand, functions as recruiting funnel.</p>
+          <p class="ex">Early Stripe and Brex (engineering culture posts), early Monzo (transparency posts). Not a material channel for our stage.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">What this means for WF</span>
+        <p>Our upper-funnel needs to do <strong>three things simultaneously</strong>: direct acquisition (primary, experimental), trust layer (so paid and sales convert), and authority (so enterprise and partnerships close). The other five purposes are either irrelevant (investor narrative, talent brand) or don't fit our stage (category creation, cultural retention, defensive moat). <em>Case studies below should be read with this lens</em> — a brand doing cultural retention at mature stage isn't doing the same job as we are.</p>
+      </div>
+
+      <h3>Where each brand sits — and where we do</h3>
+      <p>The eight brands vary along two dimensions that determine <strong>which playbook they can run</strong>: whether their buyers are concentrated or dispersed across geographies, and whether their growth is content-led (education drives adoption) or product-led (the product's own value drives virality). Plotted together, one brand ends up closest to our profile.</p>
+
+      <figure class="proposition-map">
+        <div class="pm-y-label">Product-led / Viral  →  Content-led / Educational</div>
+        <div class="pm-x-label">Concentrated  →  Dispersed / Multi-region</div>
+        <div class="pm-axis-tip y-top">Content-led</div>
+        <div class="pm-axis-tip y-bot">Product-led</div>
+        <div class="pm-axis-tip x-left">Concentrated</div>
+        <div class="pm-axis-tip x-right">Dispersed</div>
+
+        <div class="pm-closeness-note">
+          <strong>Closest match to WF</strong>
+          Nubank — both dispersed multi-region, both education-driven, both at a breakthrough-to-growth inflection.
+        </div>
+
+        <div class="pm-inner">
+          <!-- positions: left = X (0-100), top = Y (0-100, 0 at top) -->
+          <div class="pm-dot" style="left: 35%; top: 28%;"><img src="images/logos/pleo.png" alt="">Pleo</div>
+          <div class="pm-dot" style="left: 75%; top: 36%;"><img src="images/logos/nubank.png" alt="">Nubank</div>
+          <div class="pm-dot" style="left: 27%; top: 76%;"><img src="images/logos/monzo.png" alt="">Monzo</div>
+          <div class="pm-dot" style="left: 60%; top: 48%;"><img src="images/logos/wise.png" alt="">Wise <span style="opacity: 0.7; font-weight: 400;">(2014-18)</span></div>
+          <div class="pm-dot" style="left: 22%; top: 72%;"><img src="images/logos/chime.png" alt="">Chime</div>
+          <div class="pm-dot" style="left: 55%; top: 56%;"><img src="images/logos/revolut.png" alt="">Revolut</div>
+          <div class="pm-dot" style="left: 28%; top: 65%;"><img src="images/logos/ramp.png" alt="">Ramp</div>
+          <div class="pm-dot" style="left: 18%; top: 60%;"><img src="images/logos/brex.png" alt="">Brex</div>
+          <div class="pm-dot wf" style="left: 86%; top: 25%;"><img src="images/wf_logo.webp" alt="" style="background: white; padding: 1px; width: 22px; height: auto; border-radius: 3px;"> WorldFirst</div>
+        </div>
+      </figure>
+
+      <p class="fine">The top-right quadrant is where brands must win through <strong>content depth + regional variation</strong>. Nubank's playbook is instructive because their constraint profile most closely matches ours. Pleo's content architecture transfers as a principle but not as an operational model — they're concentrated Europe, we're dispersed globally. The bottom-left cluster (Chime, Monzo, Ramp, Brex) is where product-led virality or geographic concentration let brands sidestep heavy content investment — a playbook we can't run.</p>
+
+      <h3 style="margin-top: 48px;">The eight cases</h3>
       <p class="intro-p">For each brand, the breakdown covers <strong>what they did</strong>, <strong>why it worked</strong>, and the <strong>strategic implication</strong> for a fintech thinking about adopting their approach. Each case closes with what's <em>not</em> borrowable — the invisible preconditions that make the tactic work.</p>
 
       <!-- Case 01 · Pleo -->
@@ -2706,6 +3294,43 @@
       <p>Four stages matter: <strong>pre-breakthrough</strong> (unknown in most target markets), <strong>breakthrough</strong> (growing fast, reaching new markets), <strong>growth-stage</strong> (known in core, defending and expanding), <strong>mature</strong> (established, operating in defence).</p>
       <p>The playbook Wise used in 2014-2018 wouldn't work for Wise today and doesn't fit a mature brand. The playbook Ramp runs today wouldn't have worked for Wise in 2014. <strong>Studying mature-brand playbooks and applying them to breakthrough-stage brands — or vice versa — is one of the most common strategic mistakes.</strong></p>
 
+      <figure class="lifecycle-curve">
+        <div class="lc-y-label">Brand awareness / adoption →</div>
+        <div class="lc-legend">● = current position</div>
+        <svg class="lc-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="lc-gradient" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#E6185F" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#E6185F" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- Area under curve -->
+          <path class="area" d="M 0 96 C 25 96, 38 92, 48 65 C 58 38, 72 18, 100 10 L 100 100 L 0 100 Z"/>
+          <!-- S-curve -->
+          <path d="M 0 96 C 25 96, 38 92, 48 65 C 58 38, 72 18, 100 10"/>
+        </svg>
+
+        <!-- Brand positions on the S-curve (left = stage %, top = curve height) -->
+        <div class="lc-dot wf" style="left: 12%; top: 78%;"><img src="images/wf_logo.webp" alt="" style="background: white; padding: 1px; width: 20px; height: auto; border-radius: 3px;"> WorldFirst</div>
+        <div class="lc-dot" style="left: 22%; top: 72%;"><img src="images/logos/ramp.png" alt="">Ramp</div>
+        <div class="lc-dot" style="left: 35%; top: 63%;"><img src="images/logos/nubank.png" alt="">Nubank <span style="opacity: 0.6; font-weight: 400;">(new mkts)</span></div>
+        <div class="lc-dot" style="left: 48%; top: 49%;"><img src="images/logos/brex.png" alt="">Brex</div>
+        <div class="lc-dot" style="left: 55%; top: 40%;"><img src="images/logos/pleo.png" alt="">Pleo</div>
+        <div class="lc-dot" style="left: 62%; top: 33%;"><img src="images/logos/revolut.png" alt="">Revolut</div>
+        <div class="lc-dot" style="left: 70%; top: 24%;"><img src="images/logos/monzo.png" alt="">Monzo</div>
+        <div class="lc-dot" style="left: 75%; top: 19%;"><img src="images/logos/chime.png" alt="">Chime</div>
+        <div class="lc-dot" style="left: 92%; top: 12%;"><img src="images/logos/wise.png" alt="">Wise <span style="opacity: 0.6; font-weight: 400;">(now)</span></div>
+
+        <div class="lc-stage-labels">
+          <div class="lc-stage">Pre-breakthrough</div>
+          <div class="lc-stage">Breakthrough</div>
+          <div class="lc-stage">Growth</div>
+          <div class="lc-stage">Mature</div>
+        </div>
+      </figure>
+
+      <p class="fine"><strong>Reading the curve:</strong> brands on the steep rising section are growing fast — the playbook still works. Brands on the flattening top-right are defending, with composition heavily shifted to evergreen SEO and lifestyle retention. <strong>WorldFirst sits in the pre-breakthrough-to-breakthrough zone</strong> — the section where category-creation, creator partnerships, and milestone narrative earn their weight. Mature-brand playbooks don't apply here. Note: Nubank is marked at its <em>new-market</em> breakthrough position; in Brazil it's growth-stage-to-mature.</p>
+
       <h3>D4 · Product-driven virality vs. education-driven adoption</h3>
       <div class="two-col">
         <div>
@@ -3036,78 +3661,385 @@
         <p>You can have a great growth engine (Ramp's PPC) and minimal distribution (almost no social). You can have heavy distribution (Monzo's 20 posts/week) that feeds a single growth channel (referral / WOM). The composition of pillars and the composition of distribution surfaces are <strong>two separate decisions</strong> — and this deck has been quietly conflating them.</p>
       </div>
 
-      <h3>Platform ecology: what each surface rewards</h3>
-      <p>Every platform has a native register — what it rewards, what it punishes, which pillars it carries best. Ignoring this is Revolut's "we haven't cracked TikTok" — the pillar was fine, the platform fit wasn't.</p>
+      <h3>Platform ecology for our audience</h3>
+      <p>Every platform has a native register. But for WF, the more decisive question is <strong>whether our audiences are actually on that platform</strong> — by region. A platform with great pillar-fit but no audience in our priority regions is a waste of the content.</p>
 
-      <div class="table-wrap">
-        <table class="compare">
-          <thead>
-            <tr>
-              <th>Platform</th>
-              <th>Rewards</th>
-              <th>Punishes</th>
-              <th>Best pillars</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="brand">LinkedIn</td>
-              <td>Authority, milestone, B2B case studies, founder posts</td>
-              <td>Lifestyle, consumer humour, off-register</td>
-              <td><span class="fit-inline strong">A</span> <span class="fit-inline strong">E</span> <span class="fit-inline mod">C</span> <span class="fit-inline mod">F</span></td>
-            </tr>
-            <tr>
-              <td class="brand">YouTube</td>
-              <td>Long-form education, creator-native, deep explainers</td>
-              <td>Low production, short attention plays</td>
-              <td><span class="fit-inline strong">B</span> <span class="fit-inline strong">C</span> <span class="fit-inline mod">G</span></td>
-            </tr>
-            <tr>
-              <td class="brand">Instagram</td>
-              <td>Visual brand, lifestyle, creators, cultural moments</td>
-              <td>Text-heavy, technical, no visual anchor</td>
-              <td><span class="fit-inline strong">B</span> <span class="fit-inline strong">D</span> <span class="fit-inline strong">G</span></td>
-            </tr>
-            <tr>
-              <td class="brand">TikTok</td>
-              <td>Cultural entertainment, creator scale, trend participation</td>
-              <td>Finance-explainer, slow-build content, product pitches</td>
-              <td><span class="fit-inline strong">D</span> <span class="fit-inline strong">G</span> <span class="fit-inline mod">B</span></td>
-            </tr>
-            <tr>
-              <td class="brand">X / Twitter</td>
-              <td>News, reactive commentary, milestone moments</td>
-              <td>Long-form, visual-led content</td>
-              <td><span class="fit-inline strong">E</span> <span class="fit-inline mod">F</span> <span class="fit-inline mod">D</span></td>
-            </tr>
-            <tr>
-              <td class="brand">Xiaohongshu</td>
-              <td>Business-adjacent education, visual + text, social proof</td>
-              <td>Western B2B formats, non-CN register</td>
-              <td><span class="fit-inline strong">B</span> <span class="fit-inline strong">C</span> <span class="fit-inline strong">G</span></td>
-            </tr>
-            <tr>
-              <td class="brand">Blog / SEO</td>
-              <td>Evergreen education, search-intent, flagship hub</td>
-              <td>Reactive / timely content, zero-click formats</td>
-              <td><span class="fit-inline strong">A</span> <span class="fit-inline strong">C</span></td>
-            </tr>
-            <tr>
-              <td class="brand">Email</td>
-              <td>Nurture, lead-magnet distribution, mid-funnel pulls</td>
-              <td>Awareness-led, top-of-funnel discovery</td>
-              <td><span class="fit-inline strong">A</span> <span class="fit-inline mod">C</span> <span class="fit-inline mod">E</span></td>
-            </tr>
-            <tr>
-              <td class="brand">Press / Earned</td>
-              <td>Third-party validation, credibility via outlet authority</td>
-              <td>Self-promotional register, manufactured PR</td>
-              <td><span class="fit-inline strong">F</span> <span class="fit-inline mod">E</span> <span class="fit-inline mod">A</span></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="region-weights">
+        <div class="rw-head">Our content-budget weights by region (reference)</div>
+        <div class="rw-grid">
+          <div class="rw-item"><span class="rw-key">UK</span><span class="rw-val">27.5%</span></div>
+          <div class="rw-item"><span class="rw-key">SEA <span class="rw-sub">MY · SG</span></span><span class="rw-val">16.0%</span></div>
+          <div class="rw-item"><span class="rw-key">US <span class="rw-sub">Zyla brand</span></span><span class="rw-val">11.4%</span></div>
+          <div class="rw-item"><span class="rw-key">EEA <span class="rw-sub">DE · PL · NL</span></span><span class="rw-val">11.2%</span></div>
+          <div class="rw-item"><span class="rw-key">Vietnam</span><span class="rw-val">6.2%</span></div>
+          <div class="rw-item"><span class="rw-key">Longtail <span class="rw-sub">MA · BD · PK · NG</span></span><span class="rw-val">5.7%</span></div>
+          <div class="rw-item"><span class="rw-key">ANZ</span><span class="rw-val">5.7%</span></div>
+        </div>
       </div>
-      <p class="fine">Pillar legend: <strong>A</strong> Flagship research · <strong>B</strong> Regional creators · <strong>C</strong> Educational evergreen · <strong>D</strong> Lifestyle/cultural · <strong>E</strong> Milestone · <strong>F</strong> PR-coded · <strong>G</strong> Short-form</p>
+
+      <p class="fine">Each platform below shows: <strong>best content types</strong> it carries, our <strong>pillar-mix fit</strong> bar, and the <strong>audience presence per region</strong>. Presence reflects whether WF's priority-region buyers (SMB importers, e-comm sellers, overseas Chinese operators) actually spend time on that platform in that market.</p>
+
+      <div class="platform-ecology-v2">
+
+        <!-- LinkedIn -->
+        <div class="platform-card">
+          <div class="pc-head">
+            <span class="pc-name">LinkedIn</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 85%;"></div></div>
+              <span class="pc-fit-val">85%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Flagship research</span>
+                <span class="pillar-chip">Milestone &amp; momentum</span>
+                <span class="pillar-chip">PR-coded / thought leadership</span>
+                <span class="pillar-chip tight">Educational evergreen</span>
+              </div>
+              <p class="pc-note">Authority surface where B2B buyers make vendor-trust decisions. Highest-fit platform for flagship + milestone pillars.</p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 90%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 40%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 72%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 30%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- YouTube -->
+        <div class="platform-card">
+          <div class="pc-head">
+            <span class="pc-name">YouTube</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 90%;"></div></div>
+              <span class="pc-fit-val">90%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Regional creators</span>
+                <span class="pillar-chip">Educational evergreen</span>
+                <span class="pillar-chip">Short-form (Shorts)</span>
+                <span class="pillar-chip tight">Flagship research (long-form)</span>
+              </div>
+              <p class="pc-note">Long-form native to finance content; truly universal reach. Carries our strongest pillars simultaneously.</p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 75%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instagram -->
+        <div class="platform-card">
+          <div class="pc-head">
+            <span class="pc-name">Instagram</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill mod" style="width: 65%;"></div></div>
+              <span class="pc-fit-val">65%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Regional creators</span>
+                <span class="pillar-chip">Short-form (Reels)</span>
+                <span class="pillar-chip tight">Lifestyle / cultural</span>
+                <span class="pillar-chip tight">Milestone (visual)</span>
+              </div>
+              <p class="pc-note">Strong creator surface globally; lifestyle register is a poor fit for B2B SME unless adapted. Best paired with creator distribution, not owned.</p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 75%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 72%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 80%"></div></div><span class="rm-val">High</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TikTok -->
+        <div class="platform-card">
+          <div class="pc-head">
+            <span class="pc-name">TikTok</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill mod" style="width: 55%;"></div></div>
+              <span class="pc-fit-val">55%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Short-form</span>
+                <span class="pillar-chip tight">Regional creators (selective)</span>
+                <span class="pillar-chip tight">Lifestyle / cultural</span>
+              </div>
+              <p class="pc-note">Revolut's <em>"we haven't cracked TikTok"</em> applies — finance content is hard on this attention pattern. Works in Vietnam + SEA where platform maturity favours business-adjacent content.</p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill med" style="width: 65%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill med" style="width: 65%"></div></div><span class="rm-val">Mid</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Facebook -->
+        <div class="platform-card">
+          <div class="pc-head">
+            <span class="pc-name">Facebook</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill mod" style="width: 60%;"></div></div>
+              <span class="pc-fit-val">60%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Paid reach (targeted)</span>
+                <span class="pillar-chip tight">Milestone</span>
+                <span class="pillar-chip tight">Regional community</span>
+              </div>
+              <p class="pc-note">Low-organic-reach globally, but <strong>primary social platform</strong> in Longtail (Nigeria especially) + Vietnam + SEA. Best as paid/targeted surface, not owned-content.</p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 58%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 92%"></div></div><span class="rm-val">Very high</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- X / Twitter -->
+        <div class="platform-card">
+          <div class="pc-head">
+            <span class="pc-name">X / Twitter</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill mod" style="width: 50%;"></div></div>
+              <span class="pc-fit-val">50%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip tight">Milestone (reactive)</span>
+                <span class="pillar-chip tight">PR-coded (news)</span>
+                <span class="pillar-chip tight">Executive / founder</span>
+              </div>
+              <p class="pc-note">Declining reach globally. Kept warm for news-register milestones and press-adjacent moments. Nigeria and Pakistan are outliers where X still carries business conversation.</p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill med" style="width: 62%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 35%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 75%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 65%"></div></div><span class="rm-val">Mid-High</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 50%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 25%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Xiaohongshu -->
+        <div class="platform-card china-desk">
+          <div class="pc-head">
+            <span class="pc-name">Xiaohongshu 小红书</span>
+            <span class="china-desk-badge">China desk · not our work</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 80%;"></div></div>
+              <span class="pc-fit-val">80%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Regional creators (CN)</span>
+                <span class="pillar-chip">Educational evergreen</span>
+                <span class="pillar-chip">Short-form</span>
+                <span class="pillar-chip tight">Business-adjacent lifestyle</span>
+              </div>
+              <p class="pc-note">High-fit platform for overseas-Chinese importer audience. Content register aligns with sourcing + business-adjacent storytelling. <strong>Managed by China desk — we coordinate rather than own.</strong></p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill low" style="width: 22%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 15%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 42%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 10%"></div></div><span class="rm-val">Negligible</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 55%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 18%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill low" style="width: 30%"></div></div><span class="rm-val">Low-Mid</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WeChat -->
+        <div class="platform-card china-desk">
+          <div class="pc-head">
+            <span class="pc-name">WeChat 微信</span>
+            <span class="china-desk-badge">China desk · not our work</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 75%;"></div></div>
+              <span class="pc-fit-val">75%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Service content / Official Account</span>
+                <span class="pillar-chip">Milestone &amp; trust signals</span>
+                <span class="pillar-chip tight">Group-driven community</span>
+                <span class="pillar-chip tight">1:1 service broadcast</span>
+              </div>
+              <p class="pc-note">Must-have pairing with Xiaohongshu for any China-adjacent strategy. Carries trust-layer + service functionality — less awareness-driving, more retention / service. <strong>Also managed by China desk.</strong></p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill low" style="width: 25%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 18%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 48%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill low" style="width: 12%"></div></div><span class="rm-val">Negligible</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 70%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill low" style="width: 28%"></div></div><span class="rm-val">Low</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill med" style="width: 40%"></div></div><span class="rm-val">Mid</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog / SEO -->
+        <div class="platform-card">
+          <div class="pc-head">
+            <span class="pc-name">Blog &amp; SEO</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 88%;"></div></div>
+              <span class="pc-fit-val">88%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Educational evergreen</span>
+                <span class="pillar-chip">Flagship research (hub)</span>
+                <span class="pillar-chip tight">Milestone (long-form)</span>
+                <span class="pillar-chip tight">PR-coded</span>
+              </div>
+              <p class="pc-note">Compounds over 3-7 years. Flagship asset lives here and gets distributed everywhere else. Search-intent audience is the highest-intent audience we have.</p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 88%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 65%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 82%"></div></div><span class="rm-val">High</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="platform-card">
+          <div class="pc-head">
+            <span class="pc-name">Email</span>
+            <div class="pc-fit">
+              <span class="pc-fit-label">WF fit</span>
+              <div class="pc-fit-bar"><div class="pc-fit-fill" style="width: 80%;"></div></div>
+              <span class="pc-fit-val">80%</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div>
+              <span class="pc-col-label">Best content types</span>
+              <div class="pillar-chips">
+                <span class="pillar-chip">Flagship nurture sequences</span>
+                <span class="pillar-chip">Educational drips</span>
+                <span class="pillar-chip tight">Milestone announcements</span>
+              </div>
+              <p class="pc-note">Mid-funnel work. Carries flagship lead-magnet nurture + milestone moments to the existing list. Universal reach — no regional variance.</p>
+            </div>
+            <div>
+              <span class="pc-col-label">Our audience presence by region</span>
+              <div class="region-mini">
+                <div class="rm-row"><span class="rm-label">UK</span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">EEA <span class="rm-sub">DE · PL · NL</span></span><div class="rm-bar"><div class="rm-fill" style="width: 80%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">US <span class="rm-sub">Zyla</span></span><div class="rm-bar"><div class="rm-fill" style="width: 85%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Longtail <span class="rm-sub">MA·BD·PK·NG</span></span><div class="rm-bar"><div class="rm-fill med" style="width: 60%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">SEA <span class="rm-sub">MY · SG</span></span><div class="rm-bar"><div class="rm-fill" style="width: 78%"></div></div><span class="rm-val">High</span></div>
+                <div class="rm-row"><span class="rm-label">Vietnam</span><div class="rm-bar"><div class="rm-fill med" style="width: 62%"></div></div><span class="rm-val">Mid</span></div>
+                <div class="rm-row"><span class="rm-label">ANZ</span><div class="rm-bar"><div class="rm-fill" style="width: 80%"></div></div><span class="rm-val">High</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
 
       <h3>Recommended distribution strategy for our profile</h3>
       <p>For a fintech with dispersed multi-region buyers, education-driven adoption, and a small central team, the distribution mix should lean toward <strong>depth on a few platforms</strong> rather than shallow coverage of all.</p>
