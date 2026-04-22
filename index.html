@@ -928,6 +928,120 @@
     font-weight: 600;
     white-space: nowrap;
   }
+  table.compare td.delta-up,
+  table.compare td.delta-down,
+  table.compare td.delta-flat {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  table.compare td.delta-up { color: #15803D; }
+  table.compare td.delta-up::before { content: '▲ '; font-size: 0.8em; }
+  table.compare td.delta-down { color: var(--wf-pink-dark); }
+  table.compare td.delta-down::before { content: '▼ '; font-size: 0.8em; }
+  table.compare td.delta-flat { color: var(--ink-softer); font-weight: 500; }
+  table.compare td.delta-flat::before { content: '± '; }
+
+  /* Comparison chart — side-by-side */
+  .comp-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 28px 0;
+  }
+  @media (max-width: 800px) {
+    .comp-compare { grid-template-columns: 1fr; }
+  }
+
+  /* Experiment-specific banner */
+  .experiment-banner {
+    background: linear-gradient(135deg, #FFF4EC 0%, var(--wf-pink-softer) 100%);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    border: 1px solid #FCE3D4;
+  }
+  .experiment-banner .exp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #C75016;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .experiment-banner .exp-label::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: #C75016;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 4px rgba(199, 80, 22, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(199, 80, 22, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(199, 80, 22, 0.08); }
+  }
+  .experiment-banner h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 10px;
+    text-transform: none;
+  }
+  .experiment-banner p {
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 0;
+    max-width: 64ch;
+  }
+
+  /* Measurement list */
+  .measurement {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .measurement h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wf-pink);
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+  .measurement dl {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 10px 20px;
+    margin: 0;
+  }
+  @media (max-width: 680px) {
+    .measurement dl { grid-template-columns: 1fr; gap: 4px; }
+    .measurement dt { margin-top: 12px; }
+  }
+  .measurement dt {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 14px;
+    padding-top: 2px;
+  }
+  .measurement dd {
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 14px;
+  }
+  .measurement dd strong { color: var(--wf-pink); }
 
   /* ==========  TWO-COL BLOCK  ========== */
   .two-col {
@@ -985,6 +1099,41 @@
     background: var(--wf-pink);
   }
   .clean-list li strong { color: var(--ink); display: block; margin-bottom: 2px; }
+
+  /* Numbered call list — no dash pseudo */
+  ol.call-list {
+    list-style: none;
+    counter-reset: call;
+    margin: 20px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  ol.call-list li {
+    counter-increment: call;
+    position: relative;
+    padding-left: 48px;
+    line-height: 1.6;
+    max-width: 72ch;
+    min-height: 36px;
+  }
+  ol.call-list li::before {
+    content: counter(call);
+    position: absolute;
+    left: 0; top: 0;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--wf-pink);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ol.call-list li strong { color: var(--ink); }
 
   /* ==========  PILLAR EVAL  ========== */
   .pillar-eval {
@@ -1174,6 +1323,7 @@
       <a href="#framework">Framework</a>
       <a href="#pillars">Pillars</a>
       <a href="#composition">Composition</a>
+      <a href="#experiment">Experiment</a>
       <a href="#lifecycle">Lifecycle</a>
       <a href="#closing">Closing</a>
     </nav>
@@ -1233,6 +1383,7 @@
       <li><a href="#framework"><span class="num">§ 2</span>Fit framework</a></li>
       <li><a href="#pillars"><span class="num">§ 3</span>Content pillars</a></li>
       <li><a href="#composition"><span class="num">§ 4</span>Composition</a></li>
+      <li><a href="#experiment"><span class="num">§ 4b</span>The experiment</a></li>
       <li><a href="#lifecycle"><span class="num">§ 5</span>Lifecycle</a></li>
       <li><a href="#closing"><span class="num">—</span>Closing principles</a></li>
       <li><a href="#sources"><span class="num">—</span>Sources</a></li>
@@ -2370,6 +2521,132 @@
         <li><strong>V3 · Geographic footprint</strong> — single-market brands can concentrate on cultural content; multi-market brands must invest in regional creators and localised educational content.</li>
         <li><strong>V4 · Team resourcing</strong> — teams with flagship-asset production capability can weight toward that pillar. Teams with continuous-content capability can weight toward lifestyle. Teams without either can weight toward outsourced creator + PR work with lighter internal production.</li>
       </ul>
+    </section>
+
+    <!-- ==========  SECTION 4B · EXPERIMENT  ========== -->
+    <section id="experiment">
+      <div class="section-anchor">
+        <span class="section-num">§ 4b</span>
+        <span class="section-divider"></span>
+      </div>
+      <h2>An experiment worth running.</h2>
+      <p class="intro-p">The hypothetical composition above is what the evidence <em>across eight competitors</em> suggests fits our profile. But averaging competitors dulls commitment. This section proposes a deliberate, <strong>time-bounded experiment</strong>: push hard on the two pillars where we have clearest regional leverage <em>today</em> (creators and short-form), pull back the long-horizon pillars that don't pay off inside a test window, and measure the demand-gen lift.</p>
+
+      <div class="experiment-banner">
+        <span class="exp-label">Experiment hypothesis</span>
+        <h4>Can creator credibility + milestone narrative do the trust-earning job that branded content did last year — while short-form carries the demand-gen load?</h4>
+        <p>Last year we invested heavily in <strong>follower accounts and branded content</strong> to make WorldFirst look big — a trust-layer play most fintechs run by default. This experiment tests whether that same trust layer can be earned more cheaply through <strong>creator credibility</strong> and <strong>milestone narrative</strong>, freeing budget for acquisition-focused short-form that converts in weeks, not quarters.</p>
+      </div>
+
+      <h3>The experiment composition</h3>
+      <p>Target: <strong class="pink">10 million impressions per month</strong> in priority regions, with creator contacts already lined up for rapid go-live.</p>
+
+      <figure class="comp-figure">
+        <div class="comp-figure-head">
+          <img src="images/wf_logo.webp" alt="" style="height: 24px; width: auto; border-radius: 0;">
+          <span class="ft">Experiment composition</span>
+          <span class="fl" style="color: #C75016;">Creator + short-form push</span>
+        </div>
+        <div class="comp-rows">
+          <div class="comp-row"><span class="comp-label">B · Regional creators + local</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 87.5%;"></div></div><span class="comp-val">35%</span></div>
+          <div class="comp-row"><span class="comp-label">G · Platform-native short-form</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 62.5%;"></div></div><span class="comp-val">25%</span></div>
+          <div class="comp-row"><span class="comp-label">E · Milestone / momentum</span><div class="comp-bar"><div class="comp-bar-fill" style="width: 37.5%;"></div></div><span class="comp-val">15%</span></div>
+          <div class="comp-row"><span class="comp-label">C · Educational evergreen</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 25%;"></div></div><span class="comp-val">10%</span></div>
+          <div class="comp-row"><span class="comp-label">A · Flagship research</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 25%;"></div></div><span class="comp-val">10%</span></div>
+          <div class="comp-row"><span class="comp-label">F · PR-coded / earned media</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 12.5%;"></div></div><span class="comp-val">5%</span></div>
+          <div class="comp-row"><span class="comp-label">D · Lifestyle / cultural</span><div class="comp-bar"><div class="comp-bar-fill muted" style="width: 0%;"></div></div><span class="comp-val">0%</span></div>
+        </div>
+        <div class="comp-commentary">
+          <strong>Creators to 35%, short-form to 25%</strong> — the two pillars we can stand up fastest (Steven has creator contacts; short-form production is cheap and iterative). <strong>Milestone held at 15%</strong> — the trust-layer function survives, routed through scale signals rather than branded-content production. <strong>Flagship + educational pulled back to 10% each</strong> — they compound over years, not experiment windows. <strong>Lifestyle removed</strong> — register mismatch for B2B SME buyers. <strong>PR-coded retained at 5%</strong> — the method of last resort, kept warm.
+        </div>
+      </figure>
+
+      <h3>Hypothetical vs. experiment — the delta</h3>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th>Pillar</th>
+              <th>Hypothetical (evidence-derived)</th>
+              <th>Experiment (creator + short-form)</th>
+              <th>Δ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="brand">B · Regional creators + local</td><td>20-25%</td><td>35%</td><td class="delta-up">+10 to 15</td></tr>
+            <tr><td class="brand">G · Platform-native short-form</td><td>~10%</td><td>25%</td><td class="delta-up">+15</td></tr>
+            <tr><td class="brand">E · Milestone / momentum</td><td>10-15%</td><td>15%</td><td class="delta-flat">±0</td></tr>
+            <tr><td class="brand">A · Flagship research</td><td>20-25%</td><td>10%</td><td class="delta-down">−10 to 15</td></tr>
+            <tr><td class="brand">C · Educational evergreen</td><td>20-25%</td><td>10%</td><td class="delta-down">−10 to 15</td></tr>
+            <tr><td class="brand">F · PR-coded / earned media</td><td>5-10%</td><td>5%</td><td class="delta-flat">±0</td></tr>
+            <tr><td class="brand">D · Lifestyle / cultural</td><td>5-10%</td><td>0%</td><td class="delta-down">−5 to 10</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Pros and cons of the shift</h3>
+      <div class="two-col">
+        <div>
+          <h5><span class="dot"></span>Pros</h5>
+          <p><strong>Fast demand signal.</strong> Creator activations and short-form show measurable effects in weeks — flagship research compounds over 12-24 months.</p>
+          <p><strong>Near-term executability.</strong> Steven already has regional creator contacts; short-form production doesn't need in-house studio capacity.</p>
+          <p><strong>Regional leverage.</strong> One creator per priority region beats any amount of generic branded content in a market where the brand is unknown.</p>
+          <p><strong>Budget efficiency.</strong> A single flagship research asset costs <strong class="pink">$80-300k</strong>. The same money funds multi-region creator programs and dozens of short-form tests.</p>
+          <p><strong>Product-led virality has space.</strong> Our product saves customers real money (a 5× delta on FX is visible in a single short clip). Letting the product explain itself is cheaper than teaching a category.</p>
+          <p><strong>Testable and reversible.</strong> Short experiment window means low opportunity cost if the hypothesis fails.</p>
+        </div>
+        <div>
+          <h5 class="alt"><span class="dot"></span>Cons</h5>
+          <p><strong>Trust-layer erosion risk.</strong> Branded content + follower accounts were building institutional credibility. Pulling them leaves a gap that creator credibility may or may not fill.</p>
+          <p><strong>SEO opportunity cost.</strong> Educational evergreen compounds over 3-7 years. Pulling back now forfeits permanent future traffic.</p>
+          <p><strong>B2B trust hierarchy.</strong> SME buyers weight <em>institutional signals</em> (research, press, Bloomberg) more heavily than creator endorsements. Creators can feel promotional.</p>
+          <p><strong>Creator concentration risk.</strong> If a creator under-performs or goes off-message, we absorb the brand consequence in a region where we just invested.</p>
+          <p><strong>Short-form platform risk.</strong> Revolut's "we haven't cracked TikTok" warning applies. Not every platform rewards finance content regardless of audience presence.</p>
+          <p><strong>Recovery cost.</strong> Rebuilding flagship + educational content after a failed experiment is a 6-12 month re-ramp, not a flip of the switch.</p>
+        </div>
+      </div>
+
+      <h3>Target, measurement, and kill criteria</h3>
+      <div class="measurement">
+        <h5>Measurement plan</h5>
+        <dl>
+          <dt>North Star</dt>
+          <dd><strong>10M impressions / month</strong> in priority regions (paid + organic, aggregate across UK, SEA, EEA, Vietnam, Longtail).</dd>
+
+          <dt>Primary metric</dt>
+          <dd>Attributed <strong>qualified signups per region</strong> — the demand-gen lift we're actually buying.</dd>
+
+          <dt>Secondary</dt>
+          <dd><strong>Brand search volume</strong> per region — does it grow independently of creator posts? (Proxy for trust-layer health.)</dd>
+
+          <dt>Tertiary</dt>
+          <dd><strong>Cost-per-qualified-lead</strong> blended across the experiment vs. last year's baseline.</dd>
+
+          <dt>Control</dt>
+          <dd>Hold <strong>1-2 priority regions on the hypothetical composition</strong> as baseline. Without a control we can't attribute lift to the composition — we just see the macro.</dd>
+
+          <dt>Duration</dt>
+          <dd><strong>3 months initial</strong>, mid-point review at week 8, full evaluation at 6 months.</dd>
+
+          <dt>Kill criteria</dt>
+          <dd>If CPQL deteriorates <strong>&gt;25% for 8 consecutive weeks</strong>, <em>or</em> brand-search volume drops in experiment regions vs. control, pause and reassess.</dd>
+
+          <dt>Scale criteria</dt>
+          <dd>If attributed demand-gen lifts <strong>&gt;2× baseline</strong> with brand-search steady, rebalance toward experiment composition across all priority regions.</dd>
+        </dl>
+      </div>
+
+      <h3>The call</h3>
+      <p>Worth running — with two hedges.</p>
+      <ol class="call-list">
+        <li><strong>Hold milestone narrative at full 15%.</strong> It's the cheapest trust-layer substitute. The role branded content + follower accounts played last year (signalling scale and stability) can be carried by milestone content at a fraction of the cost — and we're currently under-leveraging this pillar anyway.</li>
+        <li><strong>Keep 1-2 priority regions on the hypothetical composition as control.</strong> Running both compositions in parallel is how we learn. Running the experiment everywhere is how we guess.</li>
+      </ol>
+
+      <div class="callout">
+        <span class="callout-label">The frame</span>
+        <p>The hypothetical composition is the <em>evidence-averaged</em> answer — the shape that emerges from averaging eight competitor playbooks. The experiment is the <em>committed bet</em> — the shape that picks the two pillars we can move fastest on and tests them hard. Neither is right in the abstract. Running them side by side is how we find out which one earns its weight in our data.</p>
+      </div>
     </section>
 
     <!-- ==========  SECTION 5 · LIFECYCLE  ========== -->
